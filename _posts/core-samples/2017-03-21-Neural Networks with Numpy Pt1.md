@@ -5,6 +5,12 @@ tagline: hands-on
 tags : [Neural Network, Deep Learning, Python, feedforward, backpropagation, mini-batch]
 ---
 {% include JB/setup %}
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async src="path-to-mathjax/MathJax.js?config=TeX-AMS_CHTML"></script>
 
 What is this series about?
 ==========================
