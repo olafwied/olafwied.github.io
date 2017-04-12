@@ -27,8 +27,6 @@ author :
 production_url : http://olafwied.github.io
 
 gems: ["jekyll-sitemap"]
-
-markdown: kramdown
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
 JB :
