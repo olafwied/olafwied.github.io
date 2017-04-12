@@ -1,7 +1,7 @@
 ---
 layout: post
 category : other
-tagline: "Supporting tagline"
+tagline: "-"
 tags : [jekyll]
 ---
 {% include JB/setup %}
