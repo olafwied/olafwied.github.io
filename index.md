@@ -5,7 +5,7 @@ tagline: Yet Another Resource on Data Science
 ---
 {% include JB/setup %}
 
-This my personal blog where I share my experiences implementing machine learning algorithms from scratch (for mostly educational purposes).
+This is my personal blog where I share my experiences implementing machine learning algorithms from scratch (for mostly educational purposes).
 
 ## Posts
 
