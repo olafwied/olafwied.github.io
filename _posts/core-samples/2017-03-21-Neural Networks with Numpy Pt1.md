@@ -11,7 +11,7 @@ What is this series about?
 
 This is my attempt to explain deep learning to myself (sorry guys). It is based on my belief that if you can't implement it, you don't understand it. There is a lot I thought I understood before I started this series. I was often wrong. 
 
-With this in mind, it should be clear that this is not supposed to be another tutorial on deep learning. At the end of the blog, Google will probably not hire you. But, you might have a better and clearer mental picture of neural networks that can make you more productive and hands-on.
+With this in mind, it should be clear that this is not supposed to be another tutorial on deep learning. At the end of the blog, Google will probably not hire you (or me). But, you might have a better and clearer mental picture of neural networks that can make you more productive and hands-on.
 
 Part 1
 ======
@@ -69,7 +69,7 @@ To recap, $h^l$, $a^l$, $b^l$ are all row vectors. $W^l$ is a matrix with as man
 
 Our primary goal is now to compute the gradients of $J$ with respect to the weights $W$ and biases $b$. Then, we can update the weights using gradient descent. As mentioned over and over again everywhere, backpropoagation is simply the repeated use of the chain rule. The trick to see how this can be done in a efficient and iterative fashion is to compute the gradients with respect to the activation inputs $a$ instead of the outputs $h$. Let's start with $\frac{\partial J}{\partial w^L_{ij}} = \sum_{k=1}^{n_L} \frac{\partial J}{\partial a^L_{k}} \frac{\partial a^L_{k}}{\partial w^L_{ij}}$.
 
-It is easy to see from the definition of $a$, that $a^j_k$ only depends on $w^j_{ij}$ if $k=j$. Therefore, the expression simplifies to $\frac{\partial J}{\partial a^L_{j}} \frac{\partial a^L_{j}}{\partial w^L_{ij}}$. Next, since $a$ is linear in $w$, we get $\frac{\partial J}{\partial a^L_{k}} h^{L-1}_{i}$. In vector form we get, the Jacobian of $L$ w.r.t. $w^L$ is given by the outer product $(h^{L-1})^T \nabla_{a^L}L$. Let's do one more step to derive the backpropagation algorithm. Similarly, we obtain
+It is easy to see from the definition of $a$, that $a^j_k$ only depends on $$w^j_{ij}$$ if \$$k=j$$. Therefore, the expression simplifies to $\frac{\partial J}{\partial a^L_{j}} \frac{\partial a^L_{j}}{\partial w^L_{ij}}$. Next, since $a$ is linear in $w$, we get $\frac{\partial J}{\partial a^L_{k}} h^{L-1}_{i}$. In vector form we get, the Jacobian of $L$ w.r.t. $w^L$ is given by the outer product $(h^{L-1})^T \nabla_{a^L}L$. Let's do one more step to derive the backpropagation algorithm. Similarly, we obtain
 $\frac{\partial J}{\partial a^{l-1}_j} = 
 \sum_{k=1}^{n_{l}} \frac{\partial J}{\partial a^{l}_k} \frac{\partial a^{l}_k}{\partial a^{l-1}_j} =
 \sum_{k=1}^{n_{l}}\sum_{i=1}^{n_{l-1}} \frac{\partial J}{\partial a^{l}_k} \frac{\partial a^{l}_k}{\partial h^{l-1}_i} \frac{\partial h^{l-1}_i}{\partial a^{l-1}_j} = 
