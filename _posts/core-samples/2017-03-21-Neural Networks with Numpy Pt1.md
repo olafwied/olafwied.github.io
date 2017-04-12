@@ -1,7 +1,7 @@
 ---
 layout: post
 category : Neural Networks
-tagline: "-"
+tagline: hands-on
 tags : [Neural Network, Deep Learning, Python, feedforward, backpropagation, mini-batch]
 ---
 {% include JB/setup %}
