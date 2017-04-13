@@ -161,7 +161,7 @@ class Net(object):
 
 The forward and backward sweep are implemented by simply iterating through the layers in the correct order and calling the layer's backward and forward function implementation. They perform one step from the current layer to the next:
 
-```python%start_inline=True
+```python%start_inline=true
 class InputLayer(Net):
     def __init__(self,batch_size,n_features):
         self.layer_type = 'input'
@@ -176,7 +176,7 @@ class InputLayer(Net):
 
 The input layer is simple. It just feeds the input to the next layer. 
 
-~~~
+```python%start_inline=true
 class FullyConnectedLayer(object):
     def __init__(self,n_neurons,n_inputs,activation):
         self.layer_type = 'fullyconn'
@@ -213,12 +213,11 @@ class FullyConnectedLayer(object):
         
         
         return g_back
-~~~
-{: .language-python}
+```
 
 Our hidden layers do the following: They initializae the weights and biases and implement a farward and backward pass. The backward pass, for now, also performs the gradient update. The learning rate, unfortunately, is for now hard-coded into the definition of the hidden layer.
 
-~~~
+```python%start_inline=true
 class OutputLayer(object):
     def __init__(self,n_neurons,n_inputs,activation,loss_type):
         self.layer_type = 'output'
@@ -276,8 +275,7 @@ class OutputLayer(object):
         self.w -= 0.1/10*np.dot(h_prev_layer.T,g)
                 
         return g_back
-~~~
-{: .language-python}
+```
 
 The output layer looks similar in that it shares the same forward and backward functionionality. But, additionally, the output layer needs to compute the loss as well as the gradient of the loss to kick off the backpropagation algorithm. That's why the Neural Network class starts the backward loop by calling `gradient_loss` of the output layer.
 
@@ -285,7 +283,7 @@ Note, that in order to make this work for mini-batches, we only have to compute 
 
 To get an idea, if this is actually working as expected let's do a very simple experiment:
 
-~~~
+```python%start_inline=true
 net = Net(layers=[{'layer_type':'input','batch_size':10,'n_features':5},
          {'layer_type':'fullyconn','n_neurons':5,'activation':'relu'},
          {'layer_type':'output','activation':'softmax',
@@ -327,13 +325,12 @@ print(net.loss(y))
 print(net.layers[-1].h)
 plt.figure()
 plt.plot(losses)
-~~~
-{: .language-python}
+```
 
 This is a simple binary classification set up where we run the same batch through the network 100 times. 
 
 A regression problem could look like this:
-~~~
+```python%start_inline=true
 net = Net(layers=[{'layer_type':'input','batch_size':10,'n_features':5},
          {'layer_type':'fullyconn','n_neurons':5,'activation':'relu'},
          {'layer_type':'output','activation':'linear',
@@ -375,8 +372,7 @@ print(net.loss(y))
 print(net.layers[-1].h)
 plt.figure()
 plt.plot(losses)
-~~~
-{: .language-python}
+```
 Running both snippets, we see that usually we can see a continous decrease of our loss function after each iteration. 
 
 ### Next steps
