@@ -90,23 +90,302 @@ In pseudo code, we get the following basic backpropagation algorithm:
 
 ### Implementation
 
-A forward sweep updates the variables $$a$$ and $$h$$. Since $$a^l$$ depends on $$h^{l-1}$$, we will implement the forward method such that it takes $$h^{l-1}$$ as input. Note that this basic implementation will keep all the variables $$W, b, a, h$$ in memory. This makes sense also for $$a$$ and $$h$$ because they play their part in the backpropagation algorithm.
+The only package we rely on for our implementation is numpy:
+~~~
+import numpy as np
+import matplotlib.pyplot as plt
+~~~
+{: .language-python}
+
+A forward sweep updates the variables $$a$$ and $$h$$. Since $$a^l$$ depends on $$h^{l-1}$$, we will implement the forward method such that it takes $$h^{l-1}$$ as input. Note that this basic implementation will keep all the variables $$W, b, a, h$$ in memory. This makes sense also for $$a$$ and $$h$$ because they play their part in the backpropagation algorithm. A typical forward step looks something like that
+~~~
+a = np.dot(h_prev_layer,self.w)+self.b
+~~~
+{: .language-python}
 
 A backward sweep updates the variables $$g, \nabla_b J$$ and $$\nabla_W J$$. Since $$g$$ is not part of the forward propagation, there is no point in keeping it in memory for every layer. 
+~~~
+g = g*f_prime
+g_back = np.dot(g,self.w.T)
+~~~
+{: .language-python}
 
+Let's piece it together, starting with our Neural Network class, that takes in a list of layers.
+~~~
+class Net(object):
+    """
+    Parameters
+    ----------
+    layers: list of dicts
+        a list of dicts specifying the layers, see documentation for more details
+    
+    """
+    def __init__(self,layers):
+        self.n_layers = len(layers)
+        if layers[0]['layer_type'] != 'input':
+            raise ValueError('First Layer needs to be an input layer')
+        if layers[-1]['layer_type'] != 'output':
+            raise ValueError('Last layer needs to be an output layer')
+        self.layers = [InputLayer(layers[0]['batch_size'],layers[0]['n_features'])]
+        for j in range(1,self.n_layers-1):
+            if layers[j]['layer_type'] in ['fullyconn']:
+                self.layers.append(FullyConnectedLayer(layers[j]['n_neurons'],
+                                                       self.layers[j-1].n_neurons,
+                                                       layers[j]['activation']))
+            else:
+                raise NotImplementedError('only fully connected layers implemented at the moment')
+        self.layers.append(OutputLayer(layers[-1]['n_neurons'],
+                                       self.layers[-1].n_neurons,
+                                        layers[-1]['activation'],
+                                        layers[-1]['loss_type']))
+        
+    def forward(self,X):
+        """
+        Performs one forward sweep through the network.
+        
+        Parameters
+        ----------
+        X: numpy array
+            design matrix, rows=samples, columns=features
+        """
+        self.layers[0].forward(X)
+        for j in range(1,self.n_layers):
+            self.layers[j].h = self.layers[j].forward(self.layers[j-1].h)
+            
+    def loss(self,y):
+        J = self.layers[-1].compute_loss(y)
+        return J
+    
+    def backward(self,y):
+        g = self.layers[-1].gradient_loss(y)
+        for j in range(1,self.n_layers):
+            g = self.layers[-j].backward(g,self.layers[-j-1].h)
+~~~
+{: .language-python}
 
----backprop gradient with original $$W$$ to propagate the correct error of the forward step
----show example how loss decrease when running the same sample
-Of course, this example is silly but hopefully convinces you that we are not completely wrong so far.
-... 
+The forward and backward sweep are implemented by simply iterating through the layers in the correct order and calling the layer's backward and forward function implementation. They perform one step from the current layer to the next:
 
----now mini-batch
----have to average to update $$b$$ and divide throug $$m$$ to update $$W$$, otherwise the same because of our row-approach
----show example how loss decrease when running the same mini-batch
+~~~
+class InputLayer(Net):
+    def __init__(self,batch_size,n_features):
+        self.layer_type = 'input'
+        self.n_inputs = batch_size
+        self.n_neurons = n_features
+    def forward(self,X):
+        self.h = X
+        return X
+    def backward(self,g_prev_layer):
+        pass
+~~~
+{: .language-python}
 
----experiment comparing sgd and mini-batch
-Part 2
-======
+The input layer is simple. It just feeds the input to the next layer. 
 
-So far, the parameters (like the learning rate and the initial values of $$W$$ and $$b$$) are hand-coded into the definition of the classes. This is unsatsifactory. For example, we would like to specify the initialization scheme when we define our network architecture. However, the learning is not really part of our network architecture. It seems to be tied closer to the learning procedure. Therefore, it makes to sense to separate the learning algorithm from the network architecture. 
-To not only deal with code reorganization, we will also introduce how to easily incorporate well-known regularization into our gradient descent update rules. The math is very basic, so this part just be easy to follow.
+~~~
+class FullyConnectedLayer(object):
+    def __init__(self,n_neurons,n_inputs,activation):
+        self.layer_type = 'fullyconn'
+        self.n_neurons = n_neurons
+        self.n_inputs = n_inputs
+        self.activation = activation
+        if self.activation not in ['relu','linear']:
+            raise NotImplementedError('Activation not implemented')
+        self.w = np.random.randn(self.n_inputs,self.n_neurons)*np.sqrt(1.0/self.n_inputs)#weights
+        self.b = np.zeros([1,self.n_neurons])+0.1*(self.activation=='relu')#bias
+        
+    def forward(self,h_prev_layer):
+        a = np.dot(h_prev_layer,self.w)+self.b
+        self.a = a
+        if self.activation == 'relu':
+            h = np.maximum(a,0)
+        elif self.activation =='linear':
+            h = a
+            
+        self.h = h
+        return h
+    
+    def backward(self,g,h_prev_layer): #next layer as in closer to the output layer
+        if self.activation == 'relu':
+            f_prime = ((self.a>0)*1.0)
+        elif self.activation == 'linear':
+            f_prime = np.ones_like(g)
+            
+        g = g*f_prime
+        g_back = np.dot(g,self.w.T)
+        #gradient descent
+        self.b -= 0.1/10*np.sum(g,axis=0,keepdims=True)
+        self.w -= 0.1/10*np.dot(h_prev_layer.T,g)
+        
+        
+        return g_back
+~~~
+{: .language-python}
+
+Our hidden layers do the following: They initializae the weights and biases and implement a farward and backward pass. The backward pass, for now, also performs the gradient update. The learning rate, unfortunately, is for now hard-coded into the definition of the hidden layer.
+
+~~~
+class OutputLayer(object):
+    def __init__(self,n_neurons,n_inputs,activation,loss_type):
+        self.layer_type = 'output'
+        self.activation = activation
+        if self.activation not in ['softmax','linear']:
+            raise NotImplementedError('Activation not implemented')
+        self.loss_type = loss_type
+        if self.loss_type not in ['neg_log_likelihood','mse']:
+            raise NotImplementedError('Loss function not implemented')
+        self.n_neurons = n_neurons #=number of classes
+        self.n_inputs = n_inputs
+        self.w = np.random.randn(self.n_inputs,self.n_neurons)*np.sqrt(1.0/self.n_inputs)#weights
+        self.b = np.zeros([1,self.n_neurons])#bias
+        
+    def forward(self,h_prev_layer):
+        a = np.dot(h_prev_layer,self.w)+self.b
+        self.a = a
+        if self.activation == 'softmax':
+            #print(a)
+            a_max = np.max(a,axis=1,keepdims=True)
+            #print(a_max)
+            h = np.exp(a - a_max)
+            h_sum = np.sum(h,axis=1,keepdims=True)
+            h = h/h_sum
+        elif self.activation == 'linear':
+            h = a
+        self.h = h
+        return h
+    
+    def compute_loss(self,y):
+        if self.loss_type=='neg_log_likelihood':
+            return np.sum(-y*np.log(self.h),axis=1).mean()
+        elif self.loss_type=='mse':
+            return np.square(y-self.h).mean()
+    
+    def gradient_loss(self,y):
+        if self.loss_type=='neg_log_likelihood':
+            return np.mean(-y/self.h,axis=0,keepdims=True)
+        elif self.loss_type=='mse':
+            return 2/10*(self.h - y)
+        
+        
+    def backward(self,g,h_prev_layer):
+        if self.activation == 'softmax':
+            f_prime = self.h * (1 - self.h)
+        elif self.activation == 'linear':
+            f_prime = 1.0
+            
+        g = g*f_prime
+        
+        g_back = np.dot(g,self.w.T)
+        
+        #gradient descent
+        self.b -= 0.1/10*np.sum(g,axis=0,keepdims=True)
+        self.w -= 0.1/10*np.dot(h_prev_layer.T,g)
+                
+        return g_back
+~~~
+{: .language-python}
+
+The output layer looks similar in that it shares the same forward and backward functionionality. But, additionally, the output layer needs to compute the loss as well as the gradient of the loss to kick off the backpropagation algorithm. That's why the Neural Network class starts the backward loop by calling `gradient_loss` of the output layer.
+
+Note, that in order to make this work for mini-batches, we only have to compute the averages 'mean()' along the correct axis.
+
+To get an idea, if this is actually working as expected let's do a very simple experiment:
+
+~~~
+net = Net(layers=[{'layer_type':'input','batch_size':10,'n_features':5},
+         {'layer_type':'fullyconn','n_neurons':5,'activation':'relu'},
+         {'layer_type':'output','activation':'softmax',
+          'loss_type':'neg_log_likelihood','n_neurons':2}],
+    learning_rate=0.1)
+X = np.array([[1,1,1,0,0],
+              [1,2,1,0,-1],
+              [2,1,1,-1,0],
+              [2,2,2,0,0],
+              [1,2,2,0,-1],
+              [0,0,0,1,1],
+              [-1,0,0,2,1],
+              [0,-1,0,1,2],
+              [-1,-1,0,2,2],
+              [0,-1,0,1,1]])
+X = (X-X.mean(0))/X.std(0)
+y = np.array([[0,1],
+              [0,1],
+              [0,1],
+              [0,1],
+              [0,1],
+              [1,0],
+              [1,0],
+              [1,0],
+              [1,0],
+              [1,0]])
+
+net.forward(X)
+losses = [net.loss(y)]
+h1 = net.layers[-1].h
+net.backward(y)
+for j in range(99):
+    net.forward(X)
+    losses.append(net.loss(y))
+    net.backward(y)
+print(h1)
+print()
+print(net.loss(y))
+print(net.layers[-1].h)
+plt.figure()
+plt.plot(losses)
+~~~
+{: .language-python}
+
+This is a simple binary classification set up where we run the same batch through the network 100 times. 
+
+A regression problem could look like this:
+~~~
+net = Net(layers=[{'layer_type':'input','batch_size':10,'n_features':5},
+         {'layer_type':'fullyconn','n_neurons':5,'activation':'relu'},
+         {'layer_type':'output','activation':'linear',
+          'loss_type':'mse','n_neurons':1}],
+    learning_rate=0.1)
+X = np.array([[1,1,1,0,0],
+              [1,2,1,0,-1],
+              [2,1,1,-1,0],
+              [2,2,2,0,0],
+              [1,2,2,0,-1],
+              [0,0,0,1,1],
+              [-1,0,0,2,1],
+              [0,-1,0,1,2],
+              [-1,-1,0,2,2],
+              [0,-1,0,1,1]])
+X = (X-X.mean(0))/X.std(0)
+y = np.array([[1],
+              [2],
+              [2],
+              [4],
+              [3],
+              [0],
+              [1],
+              [1],
+              [2],
+              [0]])
+
+net.forward(X)
+losses = [net.loss(y)]
+h1 = net.layers[-1].h
+net.backward(y)
+for j in range(99):
+    net.forward(X)
+    losses.append(net.loss(y))
+    net.backward(y)
+print(h1)
+print()
+print(net.loss(y))
+print(net.layers[-1].h)
+plt.figure()
+plt.plot(losses)
+~~~
+{: .language-python}
+Running both snippets, we see that usually we can see a continous decrease of our loss function after each iteration. 
+
+### Next steps
+
+So far, the parameters (like the learning rate and the initialization scheme of $$W$$ and $$b$$) are hand-coded into the definition of the classes. This is unsatsifactory. For example, we would like to specify the initialization scheme when we define our network architecture. However, the learning is not really part of our network architecture. It seems to be tied closer to the learning procedure. Therefore, it makes to sense to separate the learning algorithm from the network architecture. 
+
+To not only deal with code reorganization, we will also introduce how to easily incorporate well-known regularization into our gradient descent update rules. The math is very basic, so the next part should be easy to follow. Saty tuned.
