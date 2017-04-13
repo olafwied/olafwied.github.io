@@ -108,7 +108,7 @@ g_back = np.dot(g,self.w.T)
 {% endhighlight %}
 
 Let's piece it together, starting with our Neural Network class, that takes in a list of layers.
-~~~
+```python%start_inline=true
 class Net(object):
     """
     Parameters
@@ -157,12 +157,11 @@ class Net(object):
         g = self.layers[-1].gradient_loss(y)
         for j in range(1,self.n_layers):
             g = self.layers[-j].backward(g,self.layers[-j-1].h)
-~~~
-{: .language-python}
+```
 
 The forward and backward sweep are implemented by simply iterating through the layers in the correct order and calling the layer's backward and forward function implementation. They perform one step from the current layer to the next:
 
-~~~
+```python%start_inline=True
 class InputLayer(Net):
     def __init__(self,batch_size,n_features):
         self.layer_type = 'input'
@@ -173,8 +172,7 @@ class InputLayer(Net):
         return X
     def backward(self,g_prev_layer):
         pass
-~~~
-{: .language-python}
+```
 
 The input layer is simple. It just feeds the input to the next layer. 
 
