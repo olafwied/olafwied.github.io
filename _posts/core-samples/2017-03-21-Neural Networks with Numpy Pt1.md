@@ -70,10 +70,10 @@ Our primary goal is now to compute the gradients of $$J$$ with respect to the we
 It is easy to see from the definition of $$a$$, that $$a^j_k$$ only depends on $$w^j_{ij}$$ if $$k=j$$. Therefore, the expression simplifies to $$\frac{\partial J}{\partial a^L_{j}} \frac{\partial a^L_{j}}{\partial w^L_{ij}}$$. Next, since $$a$$ is linear in $$w$$, we get $$\frac{\partial J}{\partial a^L_{k}} h^{L-1}_{i}$$. In vector form we get, the Jacobian of $$J$$ w.r.t. $$w^L$$ is given by the outer product $$(h^{L-1})^T \nabla_{a^L}J$$. Let's do one more step to derive the backpropagation algorithm. Similarly, we obtain
 $$\begin{eqnarray*}\frac{\partial J}{\partial a^{l-1}_j} &=& 
 \sum_{k=1}^{n_{l}} \frac{\partial J}{\partial a^{l}_k} \frac{\partial a^{l}_k}{\partial a^{l-1}_j} =
-\sum_{k=1}^{n_{l}}\sum_{i=1}^{n_{l-1}} \frac{\partial J}{\partial a^{l}_k} \frac{\partial a^{l}_k}{\partial h^{l-1}_i} \frac{\partial h^{l-1}_i}{\partial a^{l-1}_j} &=& 
-\sum_{k=1}^{n_{l}} \frac{\partial J}{\partial a^{l}_k} \frac{\partial a^{l}_k}{\partial h^{l-1}_j} \frac{\partial h^{l-1}_j}{\partial a^{l-1}_j} = 
-\sum_{k=1}^{n_{l}} \frac{\partial J}{\partial a^{l}_k} \frac{\partial a^{l}_k}{\partial h^{l-1}_j} f^{l-1}{'}(a^{l-1}_j) &=& 
-\sum_{k=1}^{n_{l}} \frac{\partial J}{\partial a^{l}_k} w^l_{jk} f^{l-1}{'}(a^{l-1}_j) \end{eqnarray*}$$
+\sum_{k=1}^{n_{l}}\sum_{i=1}^{n_{l-1}} \frac{\partial J}{\partial a^{l}_k} \frac{\partial a^{l}_k}{\partial h^{l-1}_i} \frac{\partial h^{l-1}_i}{\partial a^{l-1}_j} \\\\\\
+&=& \sum_{k=1}^{n_{l}} \frac{\partial J}{\partial a^{l}_k} \frac{\partial a^{l}_k}{\partial h^{l-1}_j} \frac{\partial h^{l-1}_j}{\partial a^{l-1}_j} = 
+\sum_{k=1}^{n_{l}} \frac{\partial J}{\partial a^{l}_k} \frac{\partial a^{l}_k}{\partial h^{l-1}_j} f^{l-1}{'}(a^{l-1}_j) \\\\\\
+&=& \sum_{k=1}^{n_{l}} \frac{\partial J}{\partial a^{l}_k} w^l_{jk} f^{l-1}{'}(a^{l-1}_j) \end{eqnarray*}$$
 
 In vector form, this looks as follows: $$\frac{\partial J}{\partial a^{l-1}} = \nabla_{a^{l}}J \, {W^{l}}^{T} \circ f{'}(a^{l-1})$$.
 
