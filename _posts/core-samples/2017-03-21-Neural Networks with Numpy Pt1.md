@@ -7,7 +7,7 @@ mathjax: true
 ---
 {% include JB/setup %}
 
-... in progres ...
+... in progress ...
 
 ## What is this series about?
 
