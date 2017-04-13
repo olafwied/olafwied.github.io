@@ -3,6 +3,7 @@ layout: post
 category : Neural Networks
 tagline: hands-on
 tags : [Neural Network, Deep Learning, Python, feedforward, backpropagation, mini-batch]
+mathjax: true
 ---
 {% include JB/setup %}
 <script type="text/x-mathjax-config">
