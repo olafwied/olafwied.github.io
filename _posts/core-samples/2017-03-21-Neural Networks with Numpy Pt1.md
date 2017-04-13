@@ -102,11 +102,10 @@ a = np.dot(h_prev_layer,self.w)+self.b
 ```
 
 A backward sweep updates the variables $$g, \nabla_b J$$ and $$\nabla_W J$$. Since $$g$$ is not part of the forward propagation, there is no point in keeping it in memory for every layer. 
-~~~
+{% highlight python %}
 g = g*f_prime
 g_back = np.dot(g,self.w.T)
-~~~
-{: .language-python}
+{% endhighlight %}
 
 Let's piece it together, starting with our Neural Network class, that takes in a list of layers.
 ~~~
