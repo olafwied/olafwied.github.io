@@ -97,10 +97,9 @@ import matplotlib.pyplot as plt
 ~~~
 
 A forward sweep updates the variables $$a$$ and $$h$$. Since $$a^l$$ depends on $$h^{l-1}$$, we will implement the forward method such that it takes $$h^{l-1}$$ as input. Note that this basic implementation will keep all the variables $$W, b, a, h$$ in memory. This makes sense also for $$a$$ and $$h$$ because they play their part in the backpropagation algorithm. A typical forward step looks something like that
-~~~
+~~~ Python
 a = np.dot(h_prev_layer,self.w)+self.b
 ~~~
-{: .language-python}
 
 A backward sweep updates the variables $$g, \nabla_b J$$ and $$\nabla_W J$$. Since $$g$$ is not part of the forward propagation, there is no point in keeping it in memory for every layer. 
 ~~~
