@@ -217,7 +217,7 @@ class FullyConnectedLayer(object):
 
 Our hidden layers do the following: They initializae the weights and biases and implement a farward and backward pass. The backward pass, for now, also performs the gradient update. The learning rate, unfortunately, is for now hard-coded into the definition of the hidden layer.
 
-```python%start_inline=true
+```python3
 class OutputLayer(object):
     def __init__(self,n_neurons,n_inputs,activation,loss_type):
         self.layer_type = 'output'
