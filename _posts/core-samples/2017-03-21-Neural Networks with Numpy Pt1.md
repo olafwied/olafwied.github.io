@@ -6,12 +6,8 @@ tags : [Neural Network, Deep Learning, Python, feedforward, backpropagation, min
 mathjax: true
 ---
 {% include JB/setup %}
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {inlineMath: [['$$','$$'], ['\\(','\\)']]}
-});
-</script>
-<script type="text/javascript" async src="path-to-mathjax/MathJax.js?config=TeX-AMS_CHTML"></script>
+
+... in progres ...
 
 What is this series about?
 ==========================
@@ -70,7 +66,7 @@ The backpropagation performs a similar procedure in the opposite directions on t
 Alright, let's get down to business. But wait! Before we can start implementing stuff, we need to be clear about the dimensions of all the variables:
 
 We look at the network as moving top down instead of left right. Every layer is hence represented by a row vector. Our inputs will be row vectors as well. We do so, because when we generalize our online approach to more than one sample, we would like the input to be a design matrix where each row represents one sample. Unfortunately, this yields results that look a bit different from traditional literature. But it felt like a natural starting point. We will reiterate later if necessary. 
-The weight connections are represented by a matrix $$W = (w_{ij})$$, where the entry $$w_ij$$ connects the neuron $$i$$ of the previous layer with neuron $$j$$ of the current layer. We use superscripts to indicate the layers. We call the input $$X$$ or $$h^{0}. We then define, for $$l=1,...L$$, $$a^l = h^{l-1} W^l + b^l$$ as the input to the activation function $$f^l$$ and $$h^l = f^l(a^l)$$ as the output. Let $$n_l$$ be the number of neurons in every layer. The weight connections then have dimensions $$n_{l-1} \times n_l$$. The loss function $$J$$ takes as input $$h^L$$ and the labels $$y$$ and outputs a scalar.
+The weight connections are represented by a matrix $$W = (w_{ij})$$, where the entry $$w_ij$$ connects the neuron $$i$$ of the previous layer with neuron $$j$$ of the current layer. We use superscripts to indicate the layers. We call the input $$X$$ or $$h^{0}$$. We then define, for $$l=1,...L$$, $$a^l = h^{l-1} W^l + b^l$$ as the input to the activation function $$f^l$$ and $$h^l = f^l(a^l)$$ as the output. Let $$n_l$$ be the number of neurons in every layer. The weight connections then have dimensions $$n_{l-1} \times n_l$$. The loss function $$J$$ takes as input $$h^L$$ and the labels $$y$$ and outputs a scalar.
 
 To recap, $$h^l$$, $$a^l$$, $$b^l$$ are all row vectors. $$W^l$$ is a matrix with as many rows as neurons in layer $$l-1$$ and as many columns as neurons in layer $$l$$. In the hidden layers, $$f^l$$ is a non-linear function that is applied elementwise. $$y$$ is either a scalar (e.g. standard regression) or a row-vector (e.g. classification with $$n_L$$ classes; here $$y$$ is a vector of zeros with a single 1 that indicates the true class label). $$J$$ is the loss function mapping $$h^L$$ and $$y$$ to a scalar loss value.
 
