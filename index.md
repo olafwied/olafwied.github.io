@@ -6,7 +6,7 @@ supporting tagline: Yet Another Resource on Data Science
 ---
 {% include JB/setup %}
 
-Yet Another Resource on Data Science. A collection of concepts, ideas and practical tips about Data Science.
+My personal collection of concepts, ideas and practical tips about Data Science.
 
 ## Posts
 
