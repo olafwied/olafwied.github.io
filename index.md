@@ -2,10 +2,11 @@
 layout: page
 title: Welcome to YARDS
 tagline: Yet Another Resource on Data Science
+supporting tagline: Yet Another Resource on Data Science
 ---
 {% include JB/setup %}
 
-This is my personal blog where I share my experiences implementing machine learning algorithms from scratch (for mostly educational purposes).
+Yet Another Resource on Data Science. A collection of concepts, ideas and practical tips about Data Science.
 
 ## Posts
 
