@@ -8,6 +8,7 @@ mathjax: true
 {% include JB/setup %}
 
 ##Bayesian Basics 
+
 The Bayes' rule 
 
 $$
