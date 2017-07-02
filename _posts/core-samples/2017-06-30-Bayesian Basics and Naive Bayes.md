@@ -21,7 +21,7 @@ Given a feature vector $$x$$, a class label $$c$$ and model described by paramet
 
 Naive Bayes makes one assumption to simplify the class-conditional distribution dramatically. We assume the features to be independent given the class label (conditionally independent). Now, we can conveniently express the class-conditional distribution in terms of 1-dimensional densities:
 
-$$P(x \mid y=c,\theta) = \prod_{j=1}^{d} P(x_j \mid y=c, \theta_{jc})
+$$P(x \mid y=c,\theta) = \prod_{j=1}^{d} P(x_j \mid y=c, \theta_{jc})$$
 
 The reason it is called naive is, of course, that his assumption almost never holds. So, how come it works well for many applications like text classification? Often simplicity, think linear regression, trumps complexity. The low number of parameters (proportional to the number of features $$d$$ times the number of classes) can help protect against overfitting. Another reason is that we can easily deal with different types of features and make additional assumptions about the distributions. 
 
