@@ -2,7 +2,7 @@
 layout: post
 category : Machine Learning Basics
 tagline: hands-on
-tags : [Bayes, prior, posterior, bag of words, document classification]
+tags : [Bayes, prior, posterior, likelihood, document classification]
 mathjax: true
 ---
 {% include JB/setup %}
@@ -48,7 +48,7 @@ $$P(x_i,y_i \mid \theta) = P(y_i \mid \pi) \prod_j{P(x_{ij}\mid \theta_j)}$$
 
 where $\pi$ specifies the class prior. This can be expressed as follows:
 
-$$P(x_i,y_i \mid \theta) = \prod_c{\pi_c^{I(y_i=c)} \prod_j{\prod_c{P(x_{ij}\mid \theta_{jc})^{I(y_i=c)}}}$$
+$$P(x_i,y_i \mid \theta) = \prod_c{\pi_c^{I(y_i=c)}} \prod_j{\prod_c{P(x_{ij}\mid \theta_{jc})^{I(y_i=c)}}}$$
 
 Thus, the log-likelihood is given by
 
