@@ -21,7 +21,7 @@ is one of the fundamental equations in probability theory and also in machine le
 
 Given a feature vector $$x$$, a class label $$c$$ and model described by parameters $$ \theta $$, we can compute the probabilty to observe the class label $$c$$ using Bayes' rule as 
 
-$$ \begin{eqnarray*} P(y=c \mid x,\theta) = \frac{P(y=c \mid \theta )P(x \mid y=c,\theta )}{\sum_{z_c}P(y=z_c \mid \theta )P(x \mid y=z_c,\theta )} \end{eqnarray*} $$. 
+$$P(y=c \mid x,\theta) = \frac{P(y=c \mid \theta )P(x \mid y=c,\theta )}{\sum_{z_c}P(y=z_c \mid \theta )P(x \mid y=z_c,\theta )}$$. 
 
 For many applications, of course, we can safely ignore the denominator (e.g. maximazing the probability etc.). The required quantities are the **class-conditional density** $$P(x \mid y=c,\theta)$$ and the **prior** $$P(y=c \mid \theta)$$. In this context, $$ P(y=c \mid x,\theta) $$ is called the **class-posterior**. These models are called generative, because the class-conditional density gives a recipe to generate feature vectors $$x$$. (Directly fitting the class-posterior is called a **discriminative** approach. Note that linear and quadratic discrimnant analysis are despite their names in fact generative models.)
 
@@ -35,9 +35,21 @@ The reason it is called naive is, of course, that his assumption almost never ho
 
 One common case is document classification (see below) where features are often binary ("is the word present in the document"), i.e. 
 
-$$P(x \mid y=c, \theta) = \prod_{j=1}^d Bernoulli(x_j \mid q_{jc}) $$ 
+$$P(x \mid y=c, \theta) = \prod_{j=1}^d Bernoulli(x_j \mid \theta_{jc}) $$ 
 
-with $$q_{jc}$$ being the probability of feature $$j$$ occuring in class $$c$$. Incorporating counts ("how often is the word present in the document") can be achieved easily via the multinomial distribution. It is also straight-forward to extend this to categorical features using the multinoulli distribution. For continous features, a common distribution is the normal distribution with class-proportional means and standard deviations. 
+with $$\theta_{jc}$$ being the probability of feature $$j$$ occuring in class $$c$$. Incorporating counts ("how often is the word present in the document") can be achieved easily via the multinomial distribution. It is also straight-forward to extend this to categorical features using the multinoulli distribution. For continous features, a common distribution is the normal distribution with class-proportional means and standard deviations. 
 
 ### Training Naive Bayes
+I will now show how to compute the maximum likelihood estimate (MLE) for a naive Bayes classifier. 
 
+A single case has the following probability:
+
+$$P(x_i,y_i \mid \theta) = P(y_i \mid \pi) \prod_j{P(x_{ij}\mid \theta_j)}$$
+
+where $\pi$ specifies the class prior. This can be expressed as follows:
+
+$$P(x_i,y_i \mid \theta) = \prod_c{\pi_c^{I(y_i=c)} \prod_j{\prod_c{P(x_{ij}\mid \theta_{jc})^{I(y_i=c)}}}$$
+
+Thus, the log-likelihood is given by
+
+$$log P(x,y \mid \theta) = \sum_{c} N_c log \pi_c + \sum_j \sum_c \sum_{i:y_i=c} log P(x_{ij} \mid \theta_{jc})$$ with $N_c = \sum_i I(y_i=c)$.
