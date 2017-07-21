@@ -27,7 +27,7 @@ For many applications, of course, we can safely ignore the denominator (e.g. max
 
 ### Naive Bayes
 
-Naive Bayes makes one assumption to simplify the class-conditional distribution dramatically. We assume the features to be independent given the class label (conditionally independent). Now, we can conveniently express the class-conditional distribution in terms of 1-dimensional densities:
+[Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) makes one assumption to simplify the class-conditional distribution dramatically. We assume the features to be independent given the class label (conditionally independent). Now, we can conveniently express the class-conditional distribution in terms of 1-dimensional densities:
 
 $$P(x \mid y=c,\theta) = \prod_{j=1}^{d} P(x_j \mid y=c, \theta_{jc})$$
 
@@ -40,7 +40,7 @@ $$P(x \mid y=c, \theta) = \prod_{j=1}^d Bernoulli(x_j \mid \theta_{jc}) $$
 with $$\theta_{jc}$$ being the probability of feature $$j$$ occuring in class $$c$$. Incorporating counts ("how often is the word present in the document") can be achieved easily via the multinomial distribution. It is also straight-forward to extend this to categorical features using the multinoulli distribution. For continous features, a common distribution is the normal distribution with class-proportional means and standard deviations. 
 
 ### Training Naive Bayes
-I will now show how to compute the maximum likelihood estimate (MLE) for a naive Bayes classifier. 
+I will briefly mention the maximum likelihood estimate (MLE) for a naive Bayes classifier. 
 
 A single case has the following probability:
 
@@ -56,8 +56,8 @@ $$log P(x,y \mid \theta) = \sum_{c} N_c log \pi_c + \sum_j \sum_c \sum_{i:y_i=c}
 
 with $N_c = \sum_i I(y_i=c)$. We can find the maximum using basic Lagrange calculus. It follows easily that the MLE estimate for $\pi_c$ is given by $\frac{N_c}{N}$ (if this is not immediately clear, remember to add the constraint $\sum_c \pi_c =1$ as a Lagrange multiplier). If we assume the features to be conditionally Bernoulli distributed, we have $\theta_{jc} = \frac{N_{jc}}{N_c}$ with $N_{jc} = \sum_i I(x_{ij}=1,y_i=c)$ (the number of samples with feature $j$ in class $c$).
 
-Note that MLE is prone to overfit. In particular, this approach is vulnerable if a feature in the training data is always on. If we encounter a new document where that feature is off, MLE will predice a probability of zero letting the algorithm fail. One solution, of course, is to be "more Bayesian" i.e. use a reasonable prior.
+Note that MLE is prone to overfit. In particular, this approach is vulnerable if a feature in the training data is always on. If we encounter a new document where that feature is off, MLE will predict a probability of zero letting the algorithm fail. One solution, of course, is to be "more Bayesian" i.e. use a reasonable prior.
 
-One model that has none of these short-comings is the Dirichlet Compound Multinomial model that fits nicely into the probabilistic modeling framework. 
+Final note: One model that has none of these short-comings is the [Dirichlet Compound Multinomial](https://en.wikipedia.org/wiki/Dirichlet-multinomial_distribution#Dirichlet-multinomial_as_a_compound_distribution) model that fits nicely into the probabilistic modeling framework and can also model the burstness of words (if they show up once they show up multiple times) since it corresponds to drawing from a [Polya urn](https://en.wikipedia.org/wiki/Pólya_urn_model). 
 
 
