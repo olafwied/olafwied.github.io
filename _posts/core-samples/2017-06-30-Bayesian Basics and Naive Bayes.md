@@ -52,4 +52,12 @@ $$P(x_i,y_i \mid \theta) = \prod_c{\pi_c^{I(y_i=c)}} \prod_j{\prod_c{P(x_{ij}\mi
 
 Thus, the log-likelihood is given by
 
-$$log P(x,y \mid \theta) = \sum_{c} N_c log \pi_c + \sum_j \sum_c \sum_{i:y_i=c} log P(x_{ij} \mid \theta_{jc})$$ with $N_c = \sum_i I(y_i=c)$.
+$$log P(x,y \mid \theta) = \sum_{c} N_c log \pi_c + \sum_j \sum_c \sum_{i:y_i=c} log P(x_{ij} \mid \theta_{jc})$$ 
+
+with $N_c = \sum_i I(y_i=c)$. We can find the maximum using basic Lagrange calculus. It follows easily that the MLE estimate for $\pi_c$ is given by $\frac{N_c}{N}$ (if this is not immediately clear, remember to add the constraint $\sum_c \pi_c =1$ as a Lagrange multiplier). If we assume the features to be conditionally Bernoulli distributed, we have $\theta_{jc} = \frac{N_{jc}}{N_c}$ with $N_{jc} = \sum_i I(x_{ij}=1,y_i=c)$ (the number of samples with feature $j$ in class $c$).
+
+Note that MLE is prone to overfit. In particular, this approach is vulnerable if a feature in the training data is always on. If we encounter a new document where that feature is off, MLE will predice a probability of zero letting the algorithm fail. One solution, of course, is to be "more Bayesian" i.e. use a reasonable prior.
+
+One model that has none of these short-comings is the Dirichlet Compound Multinomial model that fits nicely into the probabilistic modeling framework. 
+
+
