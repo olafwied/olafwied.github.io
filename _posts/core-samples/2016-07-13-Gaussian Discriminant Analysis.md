@@ -9,8 +9,9 @@ mathjax: true
 
 ## Gaussian Discriminant Analysis
 
-### Overview
 In the [last post]({{ site.baseurl }}{% post_url /core-samples/2016-06-30-Bayesian Basics and Naive Bayes %}) we talked about class conditional densities in generative classifiers and Naive Bayes. This post will address Gaussian discriminant analysis and how it relates to these concepts.
+
+### Overview
 
 Gaussian discriminant analysis is a technique where we assume the class conditional densities to be Gaussian:
 
@@ -20,7 +21,7 @@ Naive Bayes assumes that the features $x$ are conditionally independent on the c
 
 From our previously explored equation for generative classifiers, we can easily derive a decision rule for a new feature vector:
 
-$$\hat{y}(x) = argmax_c (log P(y=c \mid \pi) + log P(x \mid \theta_c))$
+$$\hat{y}(x) = argmax_c (log P(y=c \mid \pi) + log P(x \mid \theta_c))$$
 
 
 
