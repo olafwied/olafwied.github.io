@@ -21,4 +21,8 @@ Here you will find the most recent posts.
 ### About me
 If you would like to get in touch with me, please find me on [linkedIn](https://www.linkedin.com/in/olafwied).
 
-![profile for Olaf Wied at Data Science SE, Q&A for Data science professionals, Machine Learning specialists, and those interested in learning more about the field](https://datascience.stackexchange.com/users//flair/23305.png "profile for Olaf Wied at Data Science SE, Q&A for Data science professionals, Machine Learning specialists, and those interested in learning more about the field")
+#
+
+Check out [my profile on Data Science Stackexchange](https://datascience.stackexchange.com/users/23305/ow).
+
+![Profile for YARDS author at Data Science SE, Q&A for Data science professionals and Machine Learning specialists](https://datascience.stackexchange.com/users//flair/23305.png "Profile for YARDS author at 'Data Science SE'")
