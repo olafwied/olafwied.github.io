@@ -21,7 +21,7 @@ Here you will find the most recent posts.
 ### About me
 If you would like to get in touch with me, please find me on [linkedIn](https://www.linkedin.com/in/olafwied).
 
-#
+ 
 
 Check out [my profile on Data Science Stackexchange](https://datascience.stackexchange.com/users/23305/ow).
 
