@@ -33,11 +33,11 @@ Thresholding this formula gives a function that is quadratic in $x$! (e)
 
 ### From Quadratic to Linear
 
-One convenient assumption that will lead to Linear Discriminant Analysis is where all classes share the same covariance matrix ($\sigma_c = \sigma \forall c$). The first simplification tot notice is that the term $\mid 2 \pi \sigma_c \mid$ will cancel out with the denominator. Further, we are interested in thresholding the probabilty by comparing $P(y=c_1 \mid x,\theta) > P(y=c_2 \mid x,\theta)$. Since they share the same denominator, we will focus on the numerators:
+One convenient assumption that will lead to Linear Discriminant Analysis is where all classes share the same covariance matrix ($\sigma_c = \sigma \forall c$). The first simplification tot notice is that the term $\mid 2 \pi \sigma_c \mid$ will cancel out with the denominator. Further, we are interested in thresholding the expression by comparing e.g. $P(y=c_1 \mid x,\theta) > P(y=c_2 \mid x,\theta)$. Since they share the same denominator, they will cancel out and we focus on what is remaining of the numerators:
 
-$$P(y=c \mid x,\theta) \sim \pi_c exp\left( \mu_c^T \sigma^{-1}x -\frac{1}{2}x^T\sigma^{-1}\x -\frac{1}{2}\mu_c^T\sigma^{-1}\mu_c\right)$$
+$$P(y=c \mid x,\theta) \propto \pi_c exp\left( \mu_c^T \sigma^{-1}x -\frac{1}{2}x^T\sigma^{-1}x -\frac{1}{2}\mu_c^T\sigma^{-1}\mu_c\right)$$
 
 We can now isolate the quadratic term (which will then cancel out when we do thresholding):
 
-$$= exp\left( \mu_c^T\sigma^{-1}x - \frac{1}{2}\mu_c^T\sigma^{-1}\mu_c + log\pi)c\right) exp\left(-\frac{1}{2}x^T\sigma^{-1}x\right)
+$$\ldots = exp\left( \mu_c^T\sigma^{-1}x - \frac{1}{2}\mu_c^T\sigma^{-1}\mu_c + log\pi)c\right) exp\left(-\frac{1}{2}x^T\sigma^{-1}x\right)$$
 
