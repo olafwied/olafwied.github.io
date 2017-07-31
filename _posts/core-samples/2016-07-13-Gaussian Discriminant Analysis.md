@@ -2,7 +2,7 @@
 layout: post
 category : Machine Learning Basics
 tagline: hands-on
-tags : [Gaussian distribution, discriminant analysis, nearest shrunken centroid]
+tags : [Gaussian, Discriminant Analysis]
 mathjax: true
 ---
 {% include JB/setup %}

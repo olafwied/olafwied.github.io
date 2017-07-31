@@ -2,7 +2,7 @@
 layout: post
 category : Machine Learning Basics
 tagline: hands-on
-tags : [Bayes, prior, posterior, likelihood, document classification]
+tags : [Bayes, Prior, Posterior, Likelihood, Document Classification]
 mathjax: true
 ---
 {% include JB/setup %}
