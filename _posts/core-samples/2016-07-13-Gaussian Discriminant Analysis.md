@@ -48,11 +48,11 @@ Fitting the model can be done using the Maximum Likelihood Estimates (MLE), that
 
 There are several methods to prevent the MLE from overfitting. The basic idea is to simplify the covariance matrix that can sometimes be ill-conditioned:
 
-	- Diagonal covariance matrix (see above, Naive Bayes)
-	- Shared covariance matrices (leading to LDA)
-	- Shared and diagonal ("diagonal LDA")
-	- Fit a full covariance matrix (using [MAP](https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation) estimates or marginalization) using an appriopriate prior like Laplace (that promotes sparsity) or inverse Wishart (that leads to regularization)
-	- ...other simplifying techniques like dimensionality reduction.
+- Diagonal covariance matrix (see above, Naive Bayes)
+- Shared covariance matrices (leading to LDA)
+- Shared and diagonal ("diagonal LDA")
+- Fit a full covariance matrix (using [MAP](https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation) estimates or marginalization) using an appriopriate prior like Laplace (that promotes sparsity) or inverse Wishart (that leads to regularization)
+- ...other simplifying techniques like dimensionality reduction.
 
 See for example Murphy's book on Machine Learning for more details on these techniques.
 
