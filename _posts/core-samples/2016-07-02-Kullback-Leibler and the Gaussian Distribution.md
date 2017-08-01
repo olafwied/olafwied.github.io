@@ -14,7 +14,7 @@ Given only the first two moments, or the expected value and the variance, the Ga
 
 Let's start by defining some terms. The entropy $H$ of a random variable $X$ is defined as 
 
-$$H(X) = -\sum_i^n P(x_i)\log_b P(x_i),$$
+$$H(X) = -\sum_x P(x)\log_b P(x),$$
 
 where $0 \log_b(0)$ is set to $0$. (For continous variables, replace sums with integrals.)
 The unit of $H$ depends on the logarithmic base $b$ and is called bit (or shannon) for $b=2$ and nat for the natural logarithm.
@@ -39,7 +39,7 @@ We can re-express is in terms of entropy as follows
 
 $$D_{KL}(P\mid\mid Q) = - \sum_x P(x)\log Q(x) + \sum_x P(x)\log P(x) = H(P,Q) - H(P),$$
 
-where $H(P,Q)$ is called the cross-entropy. Following the logic of our coin experiment, this means measuring the expected information content of $X$ if the information in now encoded under some alternative coding "scheme" $Q$ instead of the true coding scheme $Q$.
+where $H(P,Q)$ is called the cross-entropy. Following the logic of our coin experiment, this means measuring the expected information content of $X$ if the information in now encoded under some alternative coding "scheme" $Q$ instead of the true coding scheme $P$.
 
 ## Maxmium Entropy Property of the Gaussian Distribution
 
