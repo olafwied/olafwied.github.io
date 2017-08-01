@@ -49,6 +49,6 @@ where $H(P,Q)$ is called the cross-entropy. Following the logic of our coin expe
 
 ### Maxmium Entropy Property of the Gaussian Distribution
 
-
+Equipped with these basic terms, we can now specify _and prove_ the maximum entropy property of the Gaussian distribution.
 
 
