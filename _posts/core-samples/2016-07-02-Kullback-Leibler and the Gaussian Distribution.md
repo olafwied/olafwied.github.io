@@ -59,7 +59,7 @@ Let $g$ be a Gaussian distribution with mean $\mu$ and variance $\sigma$, and $f
 $$\begina{eqnarray*}0 \leq D_{KL}(f\mid\mid g) = \int_{-\infty}^{\infty}f(x)\log\left(\frac{f(x)}{g(x)}\right)dx &=&
 \int_{-\infty}^{\infty}f(x)\log\left(f(x)\right) - f(x)\log\left(g(x)\right)dx &=& 
 -H(f)-\int_{-\infty}^{\infty}f(x)\log\left(g(x)\right)dx &=& 
--H(f)-\int_{-\infty}^{\infty}g(x)\log\left(g(x)\right)dx = -H(f) + H(g) $$ 
+-H(f)-\int_{-\infty}^{\infty}g(x)\log\left(g(x)\right)dx = -H(f) + H(g) \end{eqnarray*}$$ 
 
 which yields the result $H(g) \leq H(f)$. 
 
