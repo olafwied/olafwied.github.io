@@ -54,9 +54,13 @@ Equipped with these basic terms, we can now specify _and prove_ the maximum entr
 
 > The Gaussian distribution has maxmium entropy under the constraints of mean and variance. 
 
+Let $g$ be a Gaussian distribution with mean $\mu$ and variance $\sigma$, and $f$ any other distribution over $(-\infty,\infty)$ with equal variance. Then
+
 $$0 \leq D_{KL}(f\mid\mid g) = \int_{-\infty}^{\infty}f(x)\log\left(\frac{f(x)}{g(x)}\right)dx = \int_{-\infty}^{\infty}f(x)\log\left(f(x)\right) - f(x)\log\left(g(x)\right)dx = -H(f)-\int_{-\infty}^{\infty}f(x)\log\left(g(x)\right)dx = -H(f)-\int_{-\infty}^{\infty}g(x)\log\left(g(x)\right)dx = -H(f) + H(g) $$ 
 
-which yields the result. We can switch $g$ and $f$ because, by the definition of the Gaussian, $\int_{-\infty}^{\infty}f(x)\log\left(g(x)\right)dx = a_{const} + b_{const} \int_{-\infty}^{\infty}f(x)x^2\right)dx = a_{const} + b_{const} \int_{-\infty}^{\infty}g(x)x^2\right)dx$ since we assume $f$ and $g$ to have the same variance. (Plug in the definition of the pdf to see how $\log$ and $\exp$ cancel out.)
+which yields the result $H(g) \leq H(f)$. 
+
+We can switch $g$ and $f$ because, by the definition of the Gaussian, $\int_{-\infty}^{\infty}f(x)\log\left(g(x)\right)dx = a_{const} + b_{const} \int_{-\infty}^{\infty}f(x)(x-\mu)^2dx = a_{const} + b_{const} \int_{-\infty}^{\infty}g(x)(x-\mu)^2dx$ since we assume $f$ and $g$ to have the same variance. (Plug in the definition of the pdf to see how $\log$ and $\exp$ cancel out.)
 
 Similarly, one can show that the expenontial distribution has maximum entropy over the positive values under the constraints of means!
 
