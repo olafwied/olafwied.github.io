@@ -62,6 +62,8 @@ which yields the result $H(g) \leq H(f)$.
 
 We can switch $g$ and $f$ because, by the definition of the Gaussian, $\int_{-\infty}^{\infty}f(x)\log\left(g(x)\right)dx = a_{const} + b_{const} \int_{-\infty}^{\infty}f(x)(x-\mu)^2dx = a_{const} + b_{const} \int_{-\infty}^{\infty}g(x)(x-\mu)^2dx$ since we assume $f$ and $g$ to have the same variance. (Plug in the definition of the pdf to see how $\log$ and $\exp$ cancel out.)
 
+Of course, the same result holds for multivariate Gaussians.
+
 Similarly, one can show that the expenontial distribution has maximum entropy over the positive values under the constraints of means!
 
 Another result, that is very clear intuitively from our earlier thoughts on the coin flip experiment, is the follwoing: On a fixed interval $\[a,b\]$ without constraints, the uniform distribution over the given interval has maximum entropy. No area over the interval has higher propability than others leading to maximum 'uncertainty'.
