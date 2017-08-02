@@ -52,3 +52,9 @@ where $H(P,Q)$ is called the cross-entropy. Following the logic of our coin expe
 Equipped with these basic terms, we can now specify _and prove_ the maximum entropy property of the Gaussian distribution.
 
 
+> The Gaussian distribution has maxmium entropy under the constraints of mean and variance. 
+
+$$0 \leq D_{KL}(f\mid\midg) = \int_{-\infty}^{\infty}f(x)\log\left(\frac{f(x)}{g(x)}\right)dx = \int_{-\infty}^{\infty}f(x)\log\left(f(x)\right) - f(x)\log\left(g(x)\right)dx = -H(f)-\int_{-\infty}^{\infty}f(x)\log\left(g(x)\right)dx$$
+
+#### References
+[Why the Normal Distribution? Paul Rojas (2010)](http://www.inf.fu-berlin.de/inst/ag-ki/rojas_home/documents/tutorials/Gaussian-distribution.pdf): A short, easy to follow summary on the significance of the Gaussian distribution.
