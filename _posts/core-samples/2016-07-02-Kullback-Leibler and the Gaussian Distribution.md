@@ -53,7 +53,7 @@ Equipped with these basic terms, we can now specify _and prove_ the maximum entr
 
 
 > The Gaussian distribution has maxmium entropy under the constraints of equal covariance matrices. 
->> Let $g \dist N(0,\Sigma)$ and $f$ s.t. $\int f(x)x_i x_j dx = \Sigma_{ij}$. Then, $H(g) \leq H(f)$.
+>> Let $g \sim N(0,\Sigma)$ and $f$ s.t. $\int f(x)x_i x_j dx = \Sigma_{ij}$. Then, $H(g) \leq H(f)$.
 
 $$ 0 \leq D_{KL}(g\mid \mid f) = \int g(x) \log\left(\frac{g(x)}{f(x)}\right)dx$$
 
@@ -65,7 +65,7 @@ which yields the result. We can switch $f$ for $g$ since they both yield the sam
 
 Similarly, one can show that the expenontial distribution has maximum entropy over the positive values under the constraints of means!
 
-Another result, that is very clear intuitively from our earlier thoughts on the coin flip experiment, is the follwoing: On a fixed interval $\[a,b\]$ without constraints, the uniform distribution over the given interval has maximum entropy. No area over the interval has higher propability than others leading to maximum 'uncertainty'.
+Another result, that is very clear intuitively from our earlier thoughts on the coin flip experiment, is the following: On a fixed interval $\[a,b\]$ without constraints, the uniform distribution over the given interval has maximum entropy. No area over the interval has higher propability than others leading to maximum 'uncertainty'.
 
 #### References
 [Why the Normal Distribution? Paul Rojas (2010)](http://www.inf.fu-berlin.de/inst/ag-ki/rojas_home/documents/tutorials/Gaussian-distribution.pdf): A short, easy to follow summary on the significance of the Gaussian distribution.
