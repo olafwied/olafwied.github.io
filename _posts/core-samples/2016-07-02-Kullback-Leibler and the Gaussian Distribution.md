@@ -52,27 +52,16 @@ where $H(P,Q)$ is called the cross-entropy. Following the logic of our coin expe
 Equipped with these basic terms, we can now specify _and prove_ the maximum entropy property of the Gaussian distribution.
 
 
-> The Gaussian distribution has maxmium entropy under the constraints of mean and variance. 
+> The Gaussian distribution has maxmium entropy under the constraints of equal covariance matrices. 
+>> Let $g \dist N(0,\Sigma)$ and $f$ s.t. $\int f(x)x_i x_j dx = \Sigma_{ij}. Then H(g) \leq H(f).
 
-Let $g$ be a Gaussian distribution with mean $\mu$ and variance $\sigma$, and $f$ any other distribution over $(-\infty,\infty)$ with equal variance. Then
+$$ 0 \leq D_{KL}(g\mid \mid f) = \int g(x) \log\left(\frac{g(x)}{f(x)}\right)dx$$
 
-$$0 \leq D_{KL}(f\mid\mid g) = \int_{-\infty}^{\infty}f(x)\log\left(\frac{f(x)}{g(x)}\right)dx$$
+$$ = -H(g) -\int g(x)\log \left( f(x) \right)dx = -H(g) - \int f(x) \log\left(\frac{g(x)}{f(x)}\right)dx$$
 
-$$=\int_{-\infty}^{\infty}f(x)\log\left(f(x)\right) - f(x)\log\left(g(x)\right)dx $$
+$$=- H(g) + H(f) $$
 
-$$=-H(f)-\int_{-\infty}^{\infty}f(x)\log\left(g(x)\right)dx $$
-
-$$=-H(f)-\int_{-\infty}^{\infty}g(x)\log\left(g(x)\right)dx = -H(f) + H(g)$$ 
-
-which yields the result $H(g) \leq H(f)$. 
-
-We can switch $g$ and $f$ because, by the definition of the Gaussian, 
-
-$$\int_{-\infty}^{\infty}f(x)\log\left(g(x)\right)dx = a_{const} + b_{const} \int_{-\infty}^{\infty}f(x)(x-\mu)^2dx = a_{const} + b_{const} \int_{-\infty}^{\infty}g(x)(x-\mu)^2dx$$
-
-since we assume $f$ and $g$ to have the same variance. (Plug in the definition of the pdf to see how $\log$ and $\exp$ cancel out.)
-
-Of course, the same result holds for multivariate Gaussians.
+which yields the result. We can switch $f$ for $g$ since they both yield the same quadratic form given through $\log \left( f(x) \right)$.
 
 Similarly, one can show that the expenontial distribution has maximum entropy over the positive values under the constraints of means!
 
