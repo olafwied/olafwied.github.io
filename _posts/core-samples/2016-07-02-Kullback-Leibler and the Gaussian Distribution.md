@@ -10,7 +10,7 @@ mathjax: true
 In this article, we explore another reason (besides the central limit theorem and historical reasons) why the Gaussian Distribution is so widely used and often our first choice.
 Given only the first two moments, or the expected value and the variance, the Gaussian Distribution has maximum entropy. That means it is the distribution that makes the least additional asssumptions.
 
-### Entropy and Kullback-Leibler Divergence
+### Entropy
 
 Let's start by defining some terms. The entropy $H$ of a random variable $X$ is defined as 
 
@@ -33,7 +33,7 @@ $$H \approx 0.2 \cdot 2.3 + 0.8 \cdot 0.3 = 0.7.$$
 
 We know that tails is more likely than heads, reducing our uncertainty for the next toss compared to a fair coin.
 
-### Entropy and Kullback-Leibler Divergence
+### Kullback-Leibler Divergence
 
 The Kllback-Leibler divergence $D_{KL}$, on the other hand, is a measure of difference between two probability distributions. It is defined as
 
