@@ -52,8 +52,8 @@ where $H(P,Q)$ is called the cross-entropy. Following the logic of our coin expe
 Equipped with these basic terms, we can now specify _and prove_ the maximum entropy property of the Gaussian distribution.
 
 
-> The Gaussian distribution has maxmium entropy under the constraints of equal covariance matrices. 
->> Let $g \sim N(0,\Sigma)$ and $f$ s.t. $\int f(x)x_i x_j dx = \Sigma_{ij}$. Then, $H(g) \leq H(f)$.
+> The Gaussian distribution has maxmium entropy under the constraints of equal covariance matrices:
+> Let $g \sim N(0,\Sigma)$ and $f$ s.t. $\int f(x)x_i x_j dx = \Sigma_{ij}$. Then, $H(g) \leq H(f)$.
 
 $$ 0 \leq D_{KL}(g\mid \mid f) = \int g(x) \log\left(\frac{g(x)}{f(x)}\right)dx$$
 
