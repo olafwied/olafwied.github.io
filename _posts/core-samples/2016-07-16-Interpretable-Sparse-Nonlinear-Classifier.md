@@ -17,7 +17,11 @@ It can be seen as a generalization of the linear ($L_1$-regularized) logistic re
 
 FFD is based on (non-parametric) kernel density estimation (KDE) in selected sub-spaces. KDE tries to directly estimate the density of $P(y \mid x)$, leading to a discriminative classifier. (KDE basically works by dividing the input space into a grid and do a histogram count with some appropriate smoothing.) However, KDE quickly becomes infeasible for high-dimensional data, but can be very efficient in low-dimensional spaces. Following [Chen, W. et al. 2014], let $D$ be the number of features and $r < D$ be the maximal number of interactions between features. 
 The main idea of FFD is the following: 
- 1. Select a set of features $A$, with $\mid A \mid \leq r$ and corresponding ("shortened") input vector $x_A$ 2. Estimate $P(y\mid x_A)$ using KDE 3. Learn a (non-linear) feature $z \mapsto \Phi(z)$ 4. Learn a sparse, linear classifier on the data $\Phi(x)$
+ 
+1. Select a set of features $A$, with $\mid A \mid \leq r$ and corresponding ("shortened") input vector $x_A$ 
+2. Estimate $P(y\mid x_A)$ using KDE 
+3. Learn a (non-linear) feature $z \mapsto \Phi(z)$ 
+4. Learn a sparse, linear classifier on the data $\Phi(x)$
 
 In particular, $\Phi(x) = \left(\phi_1(x),\ldots,\phi_m(x)\right)$ with 
 
