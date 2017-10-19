@@ -42,7 +42,18 @@ Another thing to note is that the $RSS$ or more general the (negative) log likel
 
 The biggest problem of MLE is that it can easily lead to overfitting. There are many ways to tackle this problem. Here, I will only address one popular and very effective idea: Ridge regression or $L_2$-regularization.
 
-tbd
+Ridge regression encourages small weights by putting a Gaussian prior with mean zero on the weights: $P(w) = \prod_j N(w_j\mid 0,\alpha^2)$. 
 
+Similar to above, we can show that MLE is equivalent to minimizing 
+
+$$\frac{1}{N}\sum_{i=1}^N(y_i - w^Tx_i)^2 + \lambda \sum_{i=1}^N w_i^2$$
+
+with $\lambda = \frac{\sigma^2}{\alpha^2} \geq 0$. The second term ecnourages small weights. This is also known as weight decay. 
+
+If your data is not normalize and you need an offset parameter $w_0$, it will be outside the penality term since it doesn't affect the complexity of the function!
+
+#### Beyond Point Estimates
+
+In the [next post]({{ site.baseurl }}{% post_url /core-samples/2016-08-10-Bayesian Linear Regression%}) we will use Bayesian analysis to compute the full posterior over $w$ and $\simga^2$.
 
 
