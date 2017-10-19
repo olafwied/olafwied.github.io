@@ -28,13 +28,15 @@ $$P(y\mid x) = N(y \mid A x + b, \Sigma_y)$$.
 We can think of $y$ as a noisy version of $x$. The result we need tells us how to infer $x$ from $y$:
 
 $$ P(x\mid y) = N(x \mid \mu_{x\mid y}, \Sigma_{x\mid y})$$ 
+
 with
 
-$$ \Sigma_{x\mid y}^{-1} = \SIgma_x^{-1} + A^T \Sigma_y^{-1}A$$
+$$ \Sigma_{x\mid y}^{-1} = \Sigma_x^{-1} + A^T \Sigma_y^{-1}A$$
+
 and
 
 $$\mu_{x\mid y} = \Sigma_{x\mid y} \left( A^T \Sigma_y^{-1} (y-b)+\Sigma_x^{-1}\mu_x \right)$$
 
-For a proof see section 4.4.3 of K. Murphy's Machine Learning book.
+For a proof see e.g. section 4.4.3 of K. Murphy's Machine Learning book.
 
 ### The Posterior for Bayesian Linear Regression
