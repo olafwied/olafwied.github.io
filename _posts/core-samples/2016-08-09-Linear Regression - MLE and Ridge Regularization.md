@@ -50,10 +50,10 @@ $$\frac{1}{N}\sum_{i=1}^N(y_i - w^Tx_i)^2 + \lambda \sum_{i=1}^N w_i^2$$
 
 with $\lambda = \frac{\sigma^2}{\alpha^2} \geq 0$. The second term ecnourages small weights. This is also known as weight decay. 
 
-If your data is not normalize and you need an offset parameter $w_0$, it will be outside the penality term since it doesn't affect the complexity of the function!
+If your data is not normalized and you need an offset parameter $w_0$, it will be outside the penality term since it doesn't affect the complexity of the function!
 
 #### Beyond Point Estimates
 
-In the [next post]({{ site.baseurl }}{% post_url /core-samples/2016-08-10-Bayesian Linear Regression%}) we will use Bayesian analysis to compute the full posterior over $w$ and $\simga^2$.
+In the [next post]({{ site.baseurl }}{% post_url /core-samples/2016-08-10-Bayesian Linear Regression%}) we will use Bayesian analysis to compute the full posterior over $w$ and $\sigma^2$.
 
 
