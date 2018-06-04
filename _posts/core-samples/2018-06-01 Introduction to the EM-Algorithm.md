@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 ## Introduction to the Expectation-Maximization Algorithm
 ### The Gaussian Mixture Model (GMM)
 
-The Gaussian Mixture Model is quite simple. We assume the data is generated from a mixture of Gaussian variables, namely:
+The Gaussian Mixture Model is quite simple. We assume the data is generated from a mixture of Gaussian variables, i.e.:
 
 $P(x|\theta) = w_1 \cdot N(x|\mu_1, \Sigma_1) + \ldots + w_K \cdot N(x|\mu_K, \Sigma_K)$ where $\theta$ is the set of all parameters, in this case the location vectors and covariance matrices $\{\mu_1,\ldots,\mu_K,\Sigma_1,\ldots,\Sigma_K\}$ and $K$ is the number of "mixtures".
 
@@ -69,7 +69,7 @@ The Expectation-Maximazation Algorithm (or EM) can often converge after a few st
 
 To understand the EM algorithm, we need to introduce a latent (unobserved) variable. This will simplify the calculations as we will see shortly.
 
-Let's a latent variable $T$ that "assigns" our data to one of the clusters.
+Let's define a latent variable $T$ that "assigns" our data to one of the clusters.
 
 1. $P(T=c|\theta) = w_c$
 2. $P(x|T=c, \theta) = N(x|\mu_c, \Sigma_c)$
@@ -89,7 +89,7 @@ $P(x \,|\, T=c, \theta) = N(x \,|\ \mu_c, \sigma^2_c)$ and from here
 
 and similarly for the red points for $T=2$. 
 
-Note that this gives us "soft assignments" where each sample is not assigned just one (the most likely) cluster but a probability for each cluster $P(T=c \,|\ x_j, \theta)$. For "hard clustering" we take the average over all blue or red points to compute the parameters of the Gaussians.
+Note that this gives us "soft/probabilistic assignments" where each sample is not assigned just one (the most likely) cluster but a probability for each cluster $P(T=c \,|\ x_j, \theta)$. For "hard clustering/assignments" we take the average over all blue or red points to compute the parameters of the Gaussians.
 
 
 #### What if we knew $\theta$?
@@ -101,7 +101,7 @@ On the other hand, if we know $\theta$ we can compute the distribution of $T$ ju
 #### EM Algorithm as Chicken and Egg Problem
 So far, we have seen that if we know one of the two, we can estimate the other. Therefore, we are left with a chicken and egg problem. Where to start? 
 
-The idea of the EM algorithm is simply and powerful. Start with a random initialization and then estimate the parameters. In the next step, take the parameters as fixed and estimate the latent variable. Now, fix the latent variable distribution and estimate the parameters again with the updated values. Continue this iteration between the so-called "expectation" and "maximazation" steps until convergence.
+The idea of the EM algorithm is simple yet powerful: Start with a random initialization and then estimate the parameters. In the next step, take the parameters as fixed and estimate the latent variable. Now, fix the latent variable distribution and estimate the parameters again with the updated values. Continue this alternation between the so-called "expectation" and "maximazation" steps until convergence.
 
 Let's try this for our example. Let's start by choosing two initial Gaussians:
 
@@ -179,43 +179,7 @@ plt.show()
 
 #### Update Parameters
 
-Now, let's estimate the parameters of the Gaussians based on the initial assignments:
-
-
-```python
-cluster_1, assignments_cluster1
-```
-
-
-
-
-    (array([-2.93218598, -3.49615562, -0.30486232, -1.40113041, -1.7226102 ,
-            -0.63181531, -2.04186532, -1.80173694, -2.7921006 , -1.0785547 ,
-            -2.88087361, -2.81908622, -0.98187877, -2.482527  , -0.45299344,
-            -2.91480084, -4.69573539, -1.16825533, -2.79565947, -0.69627068,
-            -0.85803205, -3.47278294,  0.42156497, -3.7212476 , -1.73476679,
-            -1.54731854, -1.13937859, -2.61531047, -2.49307557, -2.38927165]),
-     array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-            0, 0, 0, 0, 0, 0, 0], dtype=int64))
-
-
-
-
-```python
-cluster_2, assignments_cluster2
-```
-
-
-
-
-    (array([ 2.00764816,  0.61564616,  1.53224356,  0.05894657,  0.85670316,
-             0.53587344,  0.79208366,  2.34972749, -0.53837314,  2.01461064,
-             1.17906862,  1.36325329,  0.44832125,  2.86156194,  1.23458584,
-             1.2745659 ,  2.49968063,  1.04963874,  1.52950547,  0.82285498,
-             0.91453704,  2.03576486,  2.2033406 , -0.06586041,  0.61639736,
-             2.08018301,  2.09991788,  1.95452593, -0.46573425,  0.91396823]),
-     array([1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-            0, 1, 1, 1, 1, 0, 1], dtype=int64))
+Now, let's estimate the parameters of the Gaussians based on the initial assignments. I'll keep the code explicit but feel free to skip ahead to the results.
 
 
 
@@ -243,6 +207,7 @@ sigma2_est = np.sum(np.square(cluster_1[np.where(assignments_cluster1==1)]-mu2_e
 sigma2_est /= np.sum(assignments_cluster1==1)+np.sum(assignments_cluster2==1)
 ```
 
+**This gives the following parameters:**
 
 ```python
 mu1_est, sigma1_est, mu2_est, sigma2_est
@@ -346,6 +311,7 @@ mu1_est = np.sum(cluster_1[np.where(assignments_cluster1==0)])+np.sum(cluster_2[
 mu1_est /= np.sum(assignments_cluster1==0)+np.sum(assignments_cluster2==0)
 ```
 
+**After the first step, the parameters change only very little. Given the overlap of the distributions, we came already close to the best we can do.**
 
 ```python
 mu1_est, sigma1_est, mu2_est, sigma2_est
@@ -376,4 +342,10 @@ plt.show()
 
 
 ![png](../output_43_0[1].png?raw=true)
+
+I hope this post gave some good intuition about the general idea behind the EM-algorithm which is an important tool in the Bayesian Machine Learning toolbox! 
+
+One final note: As with all optimization rountines, the EM algorithm rpesented above depends on its intial parameters. It is advised to try multiple starting points and select the best one. E.g. it is easy to to see that if we were to pick an intial Gaussian that is centered around an outlier, it would be difficult to make much progress from here!
+
+In the **next post**, we will dive deeper into the details of the E and M steps and explore how we can optimize the likelihood using the very elegant and powerful concept of variational bounds!
 
