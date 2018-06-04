@@ -2,7 +2,7 @@
 layout: post
 category : Machine Learning
 tagline: hands-on
-tags : [Gaussian Mixture Model, Kullback-Leibler, Jensen's Inequality, Bayes, Latent Variables]
+tags : [Gaussian Mixture Model, Bayes, Latent Variables]
 mathjax: true
 ---
 {% include JB/setup %}
