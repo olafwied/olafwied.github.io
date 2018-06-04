@@ -51,7 +51,7 @@ plt.show()
 ```
 
 
-![png](output_3_0.png)
+![png](output_3_0[1].png)
 
 
 If we wanted to maximize the likelihood $\prod P(x_j|\theta)$ (subject to the positivity constraints on $w$), we could simply use a optimazation rountine like stochastic gradient descent. However, this can converge slowly and often to suboptimal solutions. 
@@ -119,7 +119,7 @@ plt.show()
 ```
 
 
-![png](output_11_0.png)
+![png](output_11_0[1].png)
 
 
 #### Infer Assignments
@@ -167,7 +167,7 @@ plt.show()
 ```
 
 
-![png](output_18_0.png)
+![png](output_18_0[1].png)
 
 
 #### Update Parameters
@@ -267,7 +267,7 @@ plt.show()
 ```
 
 
-![png](output_29_0.png)
+![png](output_29_0[1].png)
 
 
 **We can see that already after one step, we are pretty close to the true parameters of the Gaussian distributions!**
@@ -310,7 +310,7 @@ plt.show()
 ```
 
 
-![png](output_36_0.png)
+![png](output_36_0[1].png)
 
 
 #### Update Parameters (Round 2)
@@ -368,5 +368,5 @@ plt.show()
 ```
 
 
-![png](output_43_0.png)
+![png](output_43_0[1].png)
 
