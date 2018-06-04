@@ -375,5 +375,5 @@ plt.show()
 ```
 
 
-![png](output_43_0[1].png)
+![png](olafwied.github.io/_posts/output_43_0[1].pngg)
 
