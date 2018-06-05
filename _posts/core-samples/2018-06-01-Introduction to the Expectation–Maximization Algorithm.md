@@ -19,9 +19,9 @@ import matplotlib.pyplot as plt
 
 The Gaussian Mixture Model is quite simple. We assume the data is generated from a mixture of Gaussian variables, i.e.:
 
-$P(x|\theta) = w_1 \cdot N(x|\mu_1, \Sigma_1) + \ldots + w_K \cdot N(x|\mu_K, \Sigma_K)$ where $\theta$ is the set of all parameters, in this case the location vectors and covariance matrices $\{\mu_1,\ldots,\mu_K,\Sigma_1,\ldots,\Sigma_K\}$ and $K$ is the number of "mixtures".
+$ P(x|\theta) = w_1 \cdot N(x|\mu_1, \Sigma_1) + \ldots + w_K \cdot N(x|\mu_K, \Sigma_K) $ where $ \theta $ is the set of all parameters, in this case the location vectors and covariance matrices $ \{\mu_1,\ldots,\mu_K,\Sigma_1,\ldots,\Sigma_K\} $ and $ K $ is the number of "mixtures".
 
-Note that $\sum_{j=1}^K w_j = 1$ and $w_j \geq 0 \,, \forall j=1,\ldots,K$ to obtain a true probability distribution. 
+Note that $ \sum_{j=1}^K w_j = 1 $ and $ w_j \geq 0 \,, \forall j=1,\ldots,K $ to obtain a true probability distribution. 
 
 The data is distributed as a weighted average of Gaussian variables. Let's see an example for $K=2$.
 
