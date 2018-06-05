@@ -63,7 +63,7 @@ plt.show()
 ```
 
 
-![png](../output_3_0[1].png?raw=true)
+![png](http://olafwied.github.io/_posts/output_3_0[1].png)
 
 
 If we wanted to maximize the likelihood $$\prod P(x_j \mid \theta)$$ (subject to the positivity constraints on $$w$$), we could simply use a optimazation rountine like stochastic gradient descent. However, this can converge slowly and often to suboptimal solutions. 
