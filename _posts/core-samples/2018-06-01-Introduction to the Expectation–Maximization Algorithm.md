@@ -24,7 +24,7 @@ To understand what this means, we will go through a simple example of probabilis
 
 The Gaussian Mixture Model is quite simple. We assume the data is generated from a mixture of Gaussian variables, i.e.:
 
-$$ P(x|\theta) = w_1 \cdot N(x|\mu_1, \Sigma_1) + \ldots + w_K \cdot N(x|\mu_K, \Sigma_K) $$ where $$ \theta $$ is the set of all parameters, in this case the location vectors and covariance matrices $$ \{\mu_1,\ldots,\mu_K,\Sigma_1,\ldots,\Sigma_K\} $$ and $$ K $$ is the number of "mixtures".
+$$ P(x\,|\,\theta) = w_1 \cdot N(x\,|\,\mu_1, \Sigma_1) + \ldots + w_K \cdot N(x\,|\,\mu_K, \Sigma_K) $$ where $$ \theta $$ is the set of all parameters, in this case the location vectors and covariance matrices $$ \{\mu_1,\ldots,\mu_K,\Sigma_1,\ldots,\Sigma_K\} $$ and $$ K $$ is the number of "mixtures".
 
 Note that $$ \sum_{j=1}^K w_j = 1 $$ and $$ w_j \geq 0 \,, \forall j=1,\ldots,K $$ to obtain a true probability distribution. 
 
@@ -66,7 +66,7 @@ plt.show()
 ![png](../output_3_0[1].png?raw=true)
 
 
-If we wanted to maximize the likelihood $$\prod P(x_j|\theta)$$ (subject to the positivity constraints on $$w$$), we could simply use a optimazation rountine like stochastic gradient descent. However, this can converge slowly and often to suboptimal solutions. 
+If we wanted to maximize the likelihood $$\prod P(x_j\,|\,\theta)$$ (subject to the positivity constraints on $$w$$), we could simply use a optimazation rountine like stochastic gradient descent. However, this can converge slowly and often to suboptimal solutions. 
 
 The Expectation-Maximazation Algorithm (or EM) can often converge after a few steps to a nearly optimal solution.
 
@@ -76,8 +76,8 @@ To understand the EM algorithm, we need to introduce a latent (unobserved) varia
 
 Let's define a latent variable $$T$$ that "assigns" our data to one of the clusters.
 
-1. $$P(T=c|\theta) = w_c$$
-2. $$P(x|T=c, \theta) = N(x|\mu_c, \Sigma_c)$$
+1. $$P(T=c\,|\,\theta) = w_c$$
+2. $$P(x\,|\,T=c, \theta) = N(x\,|\,\mu_c, \Sigma_c)$$
 
 That is, given the assigned cluster $$c$$ by $$T$$, $$x$$ follows the normal distribution defined by the corresponding parameters $$\mu_c$$ and $$\Sigma_c$$.
 
