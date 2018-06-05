@@ -131,7 +131,7 @@ plt.show()
 ```
 
 
-![png](../output_11_0[1].png?raw=true)
+![Image](../output_11_0[1].png?raw=true)
 
 
 #### Infer Assignments
@@ -179,7 +179,7 @@ plt.show()
 ```
 
 
-![png](../output_18_0[1].png?raw=true)
+![Image](https://github.com/olafwied/olafwied.github.io/blob/master/_posts/output_18_0[1].png?raw=true)
 
 
 #### Update Parameters
