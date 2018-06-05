@@ -63,7 +63,7 @@ plt.show()
 ```
 
 
-![png](http://olafwied.github.io/_posts/output_3_0[1].png)
+![Sample Data](https://github.com/olafwied/olafwied.github.io/blob/master/_posts/output_3_0[1].png?raw=true)
 
 
 If we wanted to maximize the likelihood $$\prod P(x_j \mid \theta)$$ (subject to the positivity constraints on $$w$$), we could simply use a optimazation rountine like stochastic gradient descent. However, this can converge slowly and often to suboptimal solutions. 
@@ -131,7 +131,7 @@ plt.show()
 ```
 
 
-![Image](../output_11_0[1].png?raw=true)
+![Initial Distributions](https://github.com/olafwied/olafwied.github.io/blob/master/_posts/output_11_0[1].png?raw=true)
 
 
 #### Infer Assignments
@@ -179,7 +179,7 @@ plt.show()
 ```
 
 
-![Image](https://github.com/olafwied/olafwied.github.io/blob/master/_posts/output_18_0[1].png?raw=true)
+![Initial Soft Assignments](https://github.com/olafwied/olafwied.github.io/blob/master/_posts/output_18_0[1].png?raw=true)
 
 
 #### Update Parameters
@@ -238,7 +238,7 @@ plt.show()
 ```
 
 
-![png](../output_29_0[1].png?raw=true)
+![Updated Parameters](https://github.com/olafwied/olafwied.github.io/blob/master/_posts/output_29_0[1].png?raw=true)
 
 
 **We can see that already after one step, we are pretty close to the true parameters of the Gaussian distributions!**
@@ -281,7 +281,7 @@ plt.show()
 ```
 
 
-![png](../output_36_0[1].png?raw=true)
+![Soft Assignments 2](https://github.com/olafwied/olafwied.github.io/blob/master/_posts/output_36_0[1].png?raw=true)
 
 
 #### Update Parameters (Round 2)
@@ -336,7 +336,7 @@ plt.show()
 ```
 
 
-![png](../output_43_0[1].png?raw=true)
+![Updated Parameters 2](https://github.com/olafwied/olafwied.github.io/blob/master/_posts/output_43_0[1].png?raw=true)
 
 I hope this post gave some good intuition about the general idea behind the EM-algorithm which is an important tool in the Bayesian Machine Learning toolbox! 
 
