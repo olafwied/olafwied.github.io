@@ -100,7 +100,7 @@ Often times, e.g. for a Gaussian distribution or if otherwise properly chosen, t
 
 ## The General Form of Expectation-Maximization (revisisted)
 
-**While* $\mathcal{L}(\theta^j, q^j) > tol \cdot \mathcal{L}(\theta^{j-1}, q^{j-1})$:
+**While** $\mathcal{L}(\theta^j, q^j) > tol \cdot \mathcal{L}(\theta^{j-1}, q^{j-1})$:
 
 **Do**
 
@@ -114,4 +114,8 @@ $\theta^{j+1} = \underset{\theta}{argmax} \, \mathbb{E}_{q^{j+1}} \log P(X,T \mi
 
 ## Convergence Properties of the EM Algorithm
 
+We can easily prove that the EM Algorithm always converges to at least a local maximum because
+
 $$\log P(X \mid \theta^{j+1}) \geq \mathcal{L}(q^{j+1}, \theta^{j+1}) \geq \mathcal{L}(q^{j+1}, \theta^j) = \log P(X \mid \theta^j)$$
+
+This holds (1) due to the definition of the lower bound and (2) because $\theta^{j+1}$ maximizes the lower bound w.r.t. to $\theta$. This is also a useful property for debugging your code. You should never see a decrease during the optimization.)
