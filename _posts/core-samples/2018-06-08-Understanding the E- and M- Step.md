@@ -10,7 +10,7 @@ mathjax: true
 The previous post gave a gentle introduction to the EM algorithm and the intuition behind it. 
 In this post, I will lay out some more mathematical details on how to perform the E and M step for general latent-variable models.
 
-## The General Form of Expectation-Maximization
+## The Variational Lower Bound
 
 We want to maximize the (log) likelihood of our data with respect to the model parameters $P(x \mid \theta)$ where we assume our data $X$ to be $N$ i.i.d. samples and therefore
 
@@ -27,17 +27,26 @@ This function could be (locally) optimized with a gradient decent routine. Howev
 The idea of EM is to find an optimal (in the sense explained below) lower bound on the expression above that can be easily optimized. This is done using Jensen's inequality:
 
 $$\sum_{i=1}^N \sum_{c=1}^C log P(x_i, t_i=c \mid \theta) = \sum_{i=1}^N \sum_{c=1}^C q(t_i=c)\frac{log P(x_i, t_i=c \mid \theta)}{q(t_i=c)} $$ where $q$ is any distribution over $T$.
-Applying Jensen's inequalty, we get
+Applying Jensen's inequalty, we finally get
 
 $$log P(X \mid \theta) \geq \sum_{i=1}^N \sum_{c=1}^C q(t_i=c) log \frac{P(x_i, t_i=c \mid \theta)}{q(t_i=c)} = \mathcal{L}(\theta, q)$$.
 
-We derived a family of lower bounds for the log-likelihood that depends on $q$ and $\theta$. 
+In fact, we derived a family of lower bounds for the log-likelihood that depends on $q$ and $\theta$. 
 
+## The General Form of Expectation-Maximization
 
+We now use the ideas developed in the previous post of optimizing it by alternating between finding the best $q$ and finding the best $\theta$: 
 
+While $\mathcal{L}(\theta^j, q^j) > tol \cdot \mathcal{L}(\theta^{j-1}, q^{j-1})$:
 
+#### E-Step
 
-## The Variational Lower Bound
+Find $q^{j+1}$ that maximizes $\mathcal{L}(\theta^j, q) = \mathcal{L}_{\theta^j}(q)$. 
+
+#### M-Step
+
+Find $\theta^{j+1}$ that maximizes $\mathcal{L}(\theta, q^{j+1}) = \mathcal{L}_{q^{j+1}}(\theta)$.
+
 
 ## The E-Step
 
