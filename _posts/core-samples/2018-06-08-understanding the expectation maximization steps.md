@@ -71,7 +71,7 @@ $$= \sum_{i=1}^N  \sum_{c=1}^C q(t_i=c) log \frac{P(x_i \mid \theta) \cdot q(t_i
 
 $$= \sum_{i=1}^N  \sum_{c=1}^C q(t_i=c) log \frac{q(t_i=c)}{P(t_i=c \mid x_i, \theta)}$$
 
-(see [this post]({{ site.baseurl }}{% post_url /core-samples/2016-07-02-kullback-leibler and the gaussian distribution%}) for a reminder of the Kullback-Leibler divergence)
+(see [this post]({{ site.baseurl }}{% post_url /core-samples/2016-07-02-kullback leibler and the gaussian distribution%}) for a reminder of the Kullback-Leibler divergence)
 
 $$= \sum_{i=1}^N  D_{KL}(q(t_i) \mid \mid P(t_i \mid x_i, \theta)$$
 
