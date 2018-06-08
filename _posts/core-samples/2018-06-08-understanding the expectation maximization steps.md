@@ -16,7 +16,7 @@ Remember that our goal is to maximize the (log-)likelihood of our data with resp
 
 $$ \log P(X \mid \theta) = \sum_{i=1}^N \log P(x_i \mid \theta)$$. 
 
-We can introduce our latent variable here using the law of total proabbility through a sum or an integral:
+We can introduce our latent variable $T$ here using the law of total proabbility through a sum or an integral:
 
 $$\sum_{i=1}^N \log P(x_i \mid \theta) = \sum_{i=1}^N \sum_{c=1}^C \log P(x_i, t_i=c \mid \theta)$$. 
 
@@ -27,11 +27,11 @@ This function could be (locally) optimized with a gradient decent routine. Howev
 The idea of EM is to find an optimal (in the sense explained below) lower bound on the expression above that can be easily optimized. This is done using Jensen's inequality:
 
 $$\sum_{i=1}^N \sum_{c=1}^C \log P(x_i, t_i=c \mid \theta) = \sum_{i=1}^N \sum_{c=1}^C q(t_i=c)\frac{\log P(x_i, t_i=c \mid \theta)}{q(t_i=c)} $$ where $q$ is any distribution over $T$.
-Applying Jensen's inequalty, we finally get
+Applying [Jensen's inequalty](https://en.wikipedia.org/wiki/Jensen%27s_inequality#Form_involving_a_probability_density_function), we finally get
 
 $$\log P(X \mid \theta) \geq \sum_{i=1}^N \sum_{c=1}^C q(t_i=c) \log \frac{P(x_i, t_i=c \mid \theta)}{q(t_i=c)} = \mathcal{L}(\theta, q)$$.
 
-In fact, we derived a family of lower bounds for the log-likelihood that depends on $q$ and $\theta$. 
+In fact, we derived a **family of lower bounds for the log-likelihood** that depends on $q$ and $\theta$. 
 
 ## The General Form of Expectation-Maximization
 
@@ -78,7 +78,7 @@ $$= \sum_{i=1}^N  D_{KL}(q(t_i) \mid \mid P(t_i \mid x_i, \theta)$$
 
 We established that the distance between the log-likelihood and the lower bound can be expressed in terms of the Kullback-Leibler divergence $D_{kL}$. We know that $D_{KL} \geq 0$ and $D_{KL}=0$ when $q(t_i) = P(t_i \mid x_i, \theta)$ and so we have found our optimum for $q$.
 
-In summary, the posterior probability of $t_i$ given the data and model parameters gives us the optimium for the E-step!
+In summary, **the posterior** probability of $t_i$ given the data and model parameters **gives us the optimium for the E-step!**
 
 ## The M-Step
 
@@ -94,7 +94,7 @@ $$= \sum_{i=1}^N  \sum_{c=1}^C q(t_i=c) \log P(x_i, t_i=c \mid \theta)q(t_i=c) -
 
 $$= \mathbb{E}_q \log P(X,T \mid \theta) + const$$.
 
-Often times, e.g. for a Gaussian distribution or if otherwise properly chosen, this function is relatively easy to optimize (or even concave with a global optimum). 
+Often times, e.g. for a Gaussian distribution or if otherwise properly chosen, this function is relatively easy to optimize (or even concave with a global optimum).  (We will discuss variational inference and other powerful approximate methods in later posts!)
 
 ## The General Form of EM (revisisted)
 
@@ -110,7 +110,7 @@ In summary, the EM algorithm looks as follows:
 
 ## Convergence Properties of the EM Algorithm
 
-Lastly, we can easily prove that the EM Algorithm always converges to at least a local maximum because
+Lastly, we can easily prove that **the EM Algorithm always converges to at least a local maximum** because
 
 $$\log P(X \mid \theta^{j+1}) \geq \mathcal{L}(q^{j+1}, \theta^{j+1}) \geq \mathcal{L}(q^{j+1}, \theta^j) = \log P(X \mid \theta^j)$$
 
