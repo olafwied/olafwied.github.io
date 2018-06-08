@@ -91,7 +91,7 @@ $$= \sum_{i=1}^N  \sum_{c=1}^C q(t_i=c) log P(x_i, t_i=c \mid \theta)q(t_i=c) - 
 
 (since the last term does not depend on $\theta$, we can ignore during maximization)
 
-$$= E_q log P(X,T \mid \theta) + const$$.
+$$= \mathbb{E}_q log P(X,T \mid \theta) + const$$.
 
 Often times, e.g. for a Gaussian distribution or if otherwise properly chosen, this function is relatively easy to optimize (or even concave with a global optimum). 
 
@@ -105,6 +105,6 @@ $q^{j+1} = P(t_i \mid x_i, \theta)^j$
 
 #### M-Step
 
-$\theta^{j+1} = \underset{argmax}{\theta} E_{q^{j+1}} log P(X,T \mid \theta)$.
+$\theta^{j+1} = \underset{\theta}{argmax} \mathbb{E}_{q^{j+1}} log P(X,T \mid \theta)$.
 
 ## Convergence Properties of the EM Algorithm
