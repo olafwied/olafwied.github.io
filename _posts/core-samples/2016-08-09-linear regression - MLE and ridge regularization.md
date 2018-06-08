@@ -34,7 +34,7 @@ Using matrix algebra it can be quickly verified that the solution is given by
 
 $$\hat{w} = (X^T X)^{-1}X^Ty $$
 
-Predictions $\hat{y}$ are given by $X\hat{w} = X(X^TX)^{-1}X^Ty$. If you are familiar with linear algebra you might be able to recognizie that this corresponds to a orthogonal projection of $y$ onto the column space of $X$. (This is not too surprising. The features (columns) span a linear subspace embedded in $N$-dimensional space given that we have more training samples than features. Linear regression now tries to find the closest vector to $y$ in that subspace which is of course given by it's orthogonal projection!)
+Predictions $\hat{y}$ are given by $X\hat{w} = X(X^TX)^{-1}X^Ty$. If you are familiar with linear algebra you might be able to recognizie that this corresponds to an orthogonal projection of $y$ onto the column space of $X$. (This is not too surprising. The features (columns) span a linear subspace embedded in $N$-dimensional space given that we have more training samples than features. Linear regression now tries to find the closest vector to $y$ in that subspace which is of course given by it's orthogonal projection!)
 
 Another thing to note is that the $RSS$ or more general the (negative) log likelihood is convex (a parabola). This ensures that we always find a global optimum. (This can also be seen from our discussion about orthogonal projections.)
 
