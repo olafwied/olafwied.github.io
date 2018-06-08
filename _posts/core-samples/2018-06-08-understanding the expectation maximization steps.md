@@ -2,7 +2,7 @@
 layout: post
 category : Machine Learning
 tagline: hands-on
-tags : [Gaussian Mixture Model, Bayes, Latent Variables, Expectation-Maximization, Kullback-Leibler]
+tags : [Gaussian Mixture Model, Bayes, Latent Variables, Expectation-Maximization, Kullback-Leibler, Posterior]
 mathjax: true
 ---
 {% include JB/setup %}
