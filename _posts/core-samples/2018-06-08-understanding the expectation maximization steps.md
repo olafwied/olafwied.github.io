@@ -12,7 +12,7 @@ In this post, I will lay out some more mathematical details on how to perform th
 
 ## The Variational Lower Bound
 
-We want to maximize the (log-)likelihood of our data with respect to the model parameters $P(x \mid \theta)$ where we assume our data $X$ to be $N$ i.i.d. samples and the latentn variable $T$ can take $C$ values. Hence,
+Remember that our goal is to maximize the (log-)likelihood of our data with respect to the model parameters $P(x \mid \theta)$ where we assume our data $X$ to be $N$ i.i.d. samples and the latentn variable $T$ can take $C$ values. Hence,
 
 $$ \log P(X \mid \theta) = \sum_{i=1}^N \log P(x_i \mid \theta)$$. 
 
@@ -37,15 +37,18 @@ In fact, we derived a family of lower bounds for the log-likelihood that depends
 
 We now use the ideas developed in the previous post of optimizing it by alternating between finding the best $q$ and finding the best $\theta$: 
 
-While $\mathcal{L}(\theta^j, q^j) > tol \cdot \mathcal{L}(\theta^{j-1}, q^{j-1})$:
+**While** $\mathcal{L}(\theta^j, q^j) > tol \cdot \mathcal{L}(\theta^{j-1}, q^{j-1})$:
 
-#### E-Step
+**Do**
+
+*E-Step*
 
 Find $q^{j+1}$ that maximizes $\mathcal{L}(\theta^j, q) = \mathcal{L}_{\theta^j}(q)$. 
 
-#### M-Step
+*M-Step*
 
 Find $\theta^{j+1}$ that maximizes $\mathcal{L}(\theta, q^{j+1}) = \mathcal{L}_{q^{j+1}}(\theta)$.
+
 
 Let's now discuss the details of each step.
 
@@ -97,14 +100,18 @@ Often times, e.g. for a Gaussian distribution or if otherwise properly chosen, t
 
 ## The General Form of Expectation-Maximization (revisisted)
 
-While $\mathcal{L}(\theta^j, q^j) > tol \cdot \mathcal{L}(\theta^{j-1}, q^{j-1})$:
+**While* $\mathcal{L}(\theta^j, q^j) > tol \cdot \mathcal{L}(\theta^{j-1}, q^{j-1})$:
 
-#### E-Step
+**Do**
+
+*E-Step*
 
 $q^{j+1} = P(t_i \mid x_i, \theta)^j$
 
-#### M-Step
+*M-Step*
 
 $\theta^{j+1} = \underset{\theta}{argmax} \, \mathbb{E}_{q^{j+1}} \log P(X,T \mid \theta)$.
 
 ## Convergence Properties of the EM Algorithm
+
+$$\log P(X \mid \theta^{j+1}) \geq \mathcal{L}(q^{j+1}, \theta^{j+1}) \geq \mathcal{L}(q^{j+1}, \theta^j) = \log P(X \mid \theta^j)$$
