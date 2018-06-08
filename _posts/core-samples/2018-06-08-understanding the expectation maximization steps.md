@@ -81,7 +81,7 @@ In summary, the posterior probability of $t_i$ given the data and model paramete
 
 ## The M-Step
 
-Let's rewrite $\mathcal{L}$ to aximizie it w.r.t. to $\theta$:
+Let's rewrite $\mathcal{L}$ to maximizie it w.r.t. to $\theta$:
 
 $$\mathcal{L}(\theta, q) = \sum_{i=1}^N  \sum_{c=1}^C q(t_i=c) log \frac{P(x_i, t_i=c \mid \theta)}{q(t_i=c)}$$
 
