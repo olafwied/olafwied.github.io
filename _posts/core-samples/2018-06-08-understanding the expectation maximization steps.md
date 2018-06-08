@@ -37,17 +37,14 @@ In fact, we derived a family of lower bounds for the log-likelihood that depends
 
 We now use the ideas developed in the previous post of optimizing it by alternating between finding the best $q$ and finding the best $\theta$: 
 
+**Random Parameter Initilization**
 **While** $\mathcal{L}(\theta^j, q^j) > tol \cdot \mathcal{L}(\theta^{j-1}, q^{j-1})$:
 
 **Do**
 
-*E-Step*
+ - *E-Step* : Find $q^{j+1}$ that maximizes $\mathcal{L}(\theta^j, q) = \mathcal{L}_{\theta^j}(q)$. 
 
-Find $q^{j+1}$ that maximizes $\mathcal{L}(\theta^j, q) = \mathcal{L}_{\theta^j}(q)$. 
-
-*M-Step*
-
-Find $\theta^{j+1}$ that maximizes $\mathcal{L}(\theta, q^{j+1}) = \mathcal{L}_{q^{j+1}}(\theta)$.
+ - *M-Step* :Find $\theta^{j+1}$ that maximizes $\mathcal{L}(\theta, q^{j+1}) = \mathcal{L}_{q^{j+1}}(\theta)$.
 
 
 Let's now discuss the details of each step.
@@ -106,13 +103,9 @@ In summary, the EM algorithm looks as follows:
 
 **Do**
 
-*E-Step*
+- *E-Step*: $q^{j+1} = P(t_i \mid x_i, \theta)^j$
 
-$q^{j+1} = P(t_i \mid x_i, \theta)^j$
-
-*M-Step*
-
-$\theta^{j+1} = \underset{\theta}{argmax} \, \mathbb{E}_{q^{j+1}} \log P(X,T \mid \theta)$.
+- *M-Step*: $\theta^{j+1} = \underset{\theta}{argmax} \, \mathbb{E}_{q^{j+1}} \log P(X,T \mid \theta)$.
 
 ## Convergence Properties of the EM Algorithm
 
