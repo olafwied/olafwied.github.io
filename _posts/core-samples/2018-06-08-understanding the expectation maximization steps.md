@@ -12,7 +12,7 @@ In this post, I will lay out some more mathematical details on how to perform th
 
 ## The Variational Lower Bound
 
-We want to maximize the (log) likelihood of our data with respect to the model parameters $P(x \mid \theta)$ where we assume our data $X$ to be $N$ i.i.d. samples and therefore
+We want to maximize the (log) likelihood of our data with respect to the model parameters $P(x \mid \theta)$ where we assume our data $X$ to be $N$ i.i.d. samples and the latentn variable $T$ can take $C$ values. Hence,
 
 $$ log P(X \mid \theta) = \sum_{i=1}^N log P(x_i \mid \theta)$$. 
 
@@ -78,4 +78,33 @@ $$= \sum_{i=1}^N  D_{KL}(q(t_i) \mid \mid P(t_i \mid x_i, \theta)$$
 We established that the distance between the log-likelihood and the lower bound can be expressed in terms of the Kullback-Leibler divergence $D_{kL}$. We know that $D_{KL} \geq 0$ and $D_{KL}=0$ when $q(t_i) = P(t_i \mid x_i, \theta)$ and so we have found our optimum for $q$.
 
 In summary, the posterior probability of $t_i$ given the data and model parameters gives us the optimium for the E-step!
+
 ## The M-Step
+
+Let's rewrite $\mathcal{L}$ to aximizie it w.r.t. to $\theta$:
+
+$$\mathcal{L}(\theta, q) = \sum_{i=1}^N  \sum_{c=1}^C q(t_i=c) log \frac{P(x_i, t_i=c \mid \theta)}{q(t_i=c)}$$
+
+(expanding the fraction in the $log$)
+
+$$= \sum_{i=1}^N  \sum_{c=1}^C q(t_i=c) log P(x_i, t_i=c \mid \theta)q(t_i=c) - q(t_i=c) log q(t_i=c)$$
+
+(since the last term does not depend on $\theta$, we can ignore during maximization)
+
+$$= E_q log P(X,T \mid \theta) + const$$.
+
+Often times, e.g. for a Gaussian distribution or if otherwise properly chosen, this function is relatively easy to optimize (or even concave with a global optimum). 
+
+## The General Form of Expectation-Maximization (revisisted)
+
+While $\mathcal{L}(\theta^j, q^j) > tol \cdot \mathcal{L}(\theta^{j-1}, q^{j-1})$:
+
+#### E-Step
+
+$q^{j+1} = P(t_i \mid x_i, \theta)^j$
+
+#### M-Step
+
+$\theta^{j+1} = argmax_{\theta} E_{q^{j+1}} log P(X,T \mid \theta)$.
+
+## Convergence Properties of the EM Algorithm
