@@ -114,4 +114,4 @@ Lastly, we can easily prove that the EM Algorithm always converges to at least a
 
 $$\log P(X \mid \theta^{j+1}) \geq \mathcal{L}(q^{j+1}, \theta^{j+1}) \geq \mathcal{L}(q^{j+1}, \theta^j) = \log P(X \mid \theta^j)$$
 
-This holds (1) due to the definition of the lower bound and (2) because $\theta^{j+1}$ maximizes the lower bound w.r.t. to $\theta$. This is also a useful property for debugging your code. You should never see a decrease during the optimization.)
+This holds (1) due to the definition of the lower bound and (2) because $\theta^{j+1}$ maximizes the lower bound w.r.t. to $\theta$. (This is also a useful property for debugging your code. You should never see a decrease during the optimization.)
