@@ -47,7 +47,13 @@ Find $q^{j+1}$ that maximizes $\mathcal{L}(\theta^j, q) = \mathcal{L}_{\theta^j}
 
 Find $\theta^{j+1}$ that maximizes $\mathcal{L}(\theta, q^{j+1}) = \mathcal{L}_{q^{j+1}}(\theta)$.
 
+Let's now discuss the details of each step.
 
 ## The E-Step
 
+Maximizing $\mathcal{L}(\theta^j, q)$ w.r.t. $q$ is the same (by definition of the lower bound) as minimizing the difference between $\mathcal{L}(\theta^j, q)$ and the log-likelihood $log P(X \mid \theta)$. Plugging in the definition of the variational lower bound we get the following:
+
+$$log P(X \mid \theta) - \mathcal{L}(\theta, q) = \sum_{i=1}^N log P(x_i \mid \theta) - \sum_{i=1}^N \sum_{c=1}^C q(t_i=c) log \frac{P(x_i, t_i=c \mid \theta)}{q(t_i=c)}$$. Using the fact that $\sum_{c=1}^C q(t_i=c) = 1$, we can continue as follows:
+
+$$= \sum_{i=1}^N log P(x_i \mid \theta) \sum_{c=1}^C q(t_i=c) - \sum_{i=1}^N \sum_{c=1}^C q(t_i=c) log \frac{P(x_i, t_i=c \mid \theta)}{q(t_i=c)} = \sum_{i=1}^N  \sum_{c=1}^C log P(x_i \mid \theta) q(t_i=c) - \sum_{i=1}^N \sum_{c=1}^C q(t_i=c) log \frac{P(x_i, t_i=c \mid \theta)}{q(t_i=c)}$$.
 ## The M-Step
