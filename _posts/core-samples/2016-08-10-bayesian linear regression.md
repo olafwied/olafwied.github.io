@@ -13,7 +13,7 @@ In the last post, we have discussed linear regression and how a Gaussian prior c
 
 In this post we will explore to some extent how to compute the full distributions over the weights. This allows to explicitely model uncertain about our model.
 
-Since the computation is quite involved, we will only consider the case where the variance is known. However, the results with unnkonw variance are very similar. 
+Since the computation is quite involved, we will only consider the case where the variance is known. However, the results with unknown variance are very similar. 
 
 ### Linear Gaussian Systems
 
