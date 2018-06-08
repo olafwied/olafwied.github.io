@@ -9,7 +9,7 @@ mathjax: true
 
 ## Gaussian Discriminant Analysis
 
-In the [last post]({{ site.baseurl }}{% post_url /core-samples/2016-06-30-bayesian basics and naive bayes %}) we talked about class conditional densities in generative classifiers and Naive Bayes. This post will address Gaussian discriminant analysis and how it relates to these concepts.
+In the [last post]({{ site.baseurl }}{% post_url /core-samples/2016-06-30-bayesian basics and naive bayes%}) we talked about class conditional densities in generative classifiers and Naive Bayes. This post will address Gaussian discriminant analysis and how it relates to these concepts.
 
 ### Overview
 
