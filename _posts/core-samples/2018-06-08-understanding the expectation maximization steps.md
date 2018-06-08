@@ -38,6 +38,7 @@ In fact, we derived a family of lower bounds for the log-likelihood that depends
 We now use the ideas developed in the previous post of optimizing it by alternating between finding the best $q$ and finding the best $\theta$: 
 
 **Random Parameter Initilization**
+
 **While** $\mathcal{L}(\theta^j, q^j) > tol \cdot \mathcal{L}(\theta^{j-1}, q^{j-1})$:
 
 **Do**
