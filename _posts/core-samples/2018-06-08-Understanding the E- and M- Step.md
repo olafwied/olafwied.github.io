@@ -53,7 +53,25 @@ Let's now discuss the details of each step.
 
 Maximizing $\mathcal{L}(\theta^j, q)$ w.r.t. $q$ is the same (by definition of the lower bound) as minimizing the difference between $\mathcal{L}(\theta^j, q)$ and the log-likelihood $log P(X \mid \theta)$. Plugging in the definition of the variational lower bound we get the following:
 
-$$log P(X \mid \theta) - \mathcal{L}(\theta, q) = \sum_{i=1}^N log P(x_i \mid \theta) - \sum_{i=1}^N \sum_{c=1}^C q(t_i=c) log \frac{P(x_i, t_i=c \mid \theta)}{q(t_i=c)}$$. Using the fact that $\sum_{c=1}^C q(t_i=c) = 1$, we can continue as follows:
+$$log P(X \mid \theta) - \mathcal{L}(\theta, q) = \sum_{i=1}^N log P(x_i \mid \theta) - \sum_{i=1}^N \sum_{c=1}^C q(t_i=c) log \frac{P(x_i, t_i=c \mid \theta)}{q(t_i=c)}$$ 
 
-$$= \sum_{i=1}^N log P(x_i \mid \theta) \sum_{c=1}^C q(t_i=c) - \sum_{i=1}^N \sum_{c=1}^C q(t_i=c) log \frac{P(x_i, t_i=c \mid \theta)}{q(t_i=c)} = \sum_{i=1}^N  \sum_{c=1}^C log P(x_i \mid \theta) q(t_i=c) - \sum_{i=1}^N \sum_{c=1}^C q(t_i=c) log \frac{P(x_i, t_i=c \mid \theta)}{q(t_i=c)}$$.
+Using the fact that $\sum_{c=1}^C q(t_i=c) = 1$, we can continue as follows:
+
+$$= \sum_{i=1}^N log P(x_i \mid \theta) \sum_{c=1}^C q(t_i=c) - \sum_{i=1}^N \sum_{c=1}^C q(t_i=c) log \frac{P(x_i, t_i=c \mid \theta)}{q(t_i=c)}$$
+
+(changing the summation order)
+
+$$= \sum_{i=1}^N  \sum_{c=1}^C log P(x_i \mid \theta) q(t_i=c) - \sum_{i=1}^N \sum_{c=1}^C q(t_i=c) log \frac{P(x_i, t_i=c \mid \theta)}{q(t_i=c)}$$
+
+(exploiting the rules of the logarithm)
+
+$$= \sum_{i=1}^N  \sum_{c=1}^C q(t_i=c) log \frac{P(x_i \mid \theta) \cdot q(t_i=c)}{P(x_i, t_i=c \mid \theta)}$$
+
+(and with $P(x_i, t_i=c \mid \theta) = P(t_i=c \mid x_i, \theta) \cdot P(x_i \mid \theta)$)
+
+$$= \sum_{i=1}^N  \sum_{c=1}^C q(t_i=c) log \frac{q(t_i=c)}{P(t_i=c \mid x_i, \theta)}$$
+
+(see [this post]({{ site.baseurl }}{% post_url /core-samples/2016-07-02-Kullback-Leibler and the Gaussian Distribution%}) for a reminder of the Kullback-Leibler divergence)
+
+$$= \sum_{i=1}^N  \sum_{c=1}^C q(t_i=c) log \frac{q(t_i=c)}{P(t_i=c \mid x_i, \theta)}$$
 ## The M-Step
