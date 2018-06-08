@@ -2,7 +2,7 @@
 layout: post
 category : Machine Learning Basics
 tagline: hands-on
-tags : [Linear Regression, Ridge, Regularization, MLE, Likelihood, sub-space, Regularization, Gaussian, Prior]
+tags : [Linear Regression, Ridge, Regularization, MLE, Likelihood, Subspace, Regularization, Gaussian, Prior]
 mathjax: true
 ---
 {% include JB/setup %}
