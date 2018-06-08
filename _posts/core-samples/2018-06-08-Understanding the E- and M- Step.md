@@ -73,5 +73,9 @@ $$= \sum_{i=1}^N  \sum_{c=1}^C q(t_i=c) log \frac{q(t_i=c)}{P(t_i=c \mid x_i, \t
 
 (see [this post]({{ site.baseurl }}{% post_url /core-samples/2016-07-02-Kullback-Leibler and the Gaussian Distribution%}) for a reminder of the Kullback-Leibler divergence)
 
-$$= \sum_{i=1}^N  \sum_{c=1}^C q(t_i=c) log \frac{q(t_i=c)}{P(t_i=c \mid x_i, \theta)}$$
+$$= \sum_{i=1}^N  D_{KL}(q(t_i) \mid \mid P(t_i \mid x_i, \theta)$$
+
+We established that the distance between the log-likelihood and the lower bound can be expressed in terms of the Kullback-Leibler divergence $D_{kL}$. We know that $D_{KL} \geq 0$ and $D_{KL}=0$ when $q(t_i) = P(t_i \mid x_i, \theta)$ and so we have found our optimum for $q$.
+
+In summary, the posterior probability of $t_i$ given the data and model parameters gives us the optimium for the E-step!
 ## The M-Step
