@@ -265,7 +265,7 @@ mu1_est, sigma1_est, mu2_est, sigma2_est
 
 I hope this post gave some good intuition about the general idea behind the EM-algorithm which is an important tool in the Bayesian Machine Learning toolbox! 
 
-One final note: As with all optimization rountines, the EM algorithm rpesented above depends on its intial parameters. It is advised to try multiple starting points and select the best one. E.g. it is easy to to see that if we were to pick an intial Gaussian that is centered around an outlier, it would be difficult to make much progress from here!
+One final note: As with all optimization rountines, the EM algorithm presented above depends on its intial parameters. It is advised to try multiple starting points and select the best one. E.g. it is easy to to see that if we were to pick an intial Gaussian that is centered around an outlier, it would be difficult to make much progress from here!
 
 In the **next post**, we will dive deeper into the details of the E and M steps and explore how we can optimize the likelihood using the very elegant and powerful concept of variational bounds!
 
