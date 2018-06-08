@@ -105,6 +105,6 @@ $q^{j+1} = P(t_i \mid x_i, \theta)^j$
 
 #### M-Step
 
-$\theta^{j+1} = argmax_{\theta} E_{q^{j+1}} log P(X,T \mid \theta)$.
+$\theta^{j+1} = \underset{argmax}{\theta} E_{q^{j+1}} log P(X,T \mid \theta)$.
 
 ## Convergence Properties of the EM Algorithm
