@@ -2,7 +2,7 @@
 layout: post
 category : Machine Learning
 tagline: hands-on
-tags : [Sparse, Non-linear, interpretable, Sub-space, KDE, FFD]
+tags : [Sparse, Non-linear, interpretable, Subspace, KDE, FFD]
 mathjax: true
 ---
 {% include JB/setup %}
