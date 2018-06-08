@@ -25,7 +25,7 @@ $$\widehat{y}(x) = argmax_c \, (log P(y=c \mid \pi) + log P(x \mid \theta_c))$$
 
 ### Quadratic Decision Surface
 
-To understand why this model is called Quadratic Discriminant Analysis (QDA), let's simply plug in the definition of the multivariate Gaussian density using the Bayes' rule (again see the [last post]({{ site.baseurl }}{% post_url /core-samples/2016-06-30-Bayesian Basics and Naive Bayes %})) and let $\pi_c$ be the class probability $P(y=c)$ (estimated as the proportions of instances in class $c$):
+To understand why this model is called Quadratic Discriminant Analysis (QDA), let's simply plug in the definition of the multivariate Gaussian density using the Bayes' rule (again see the [last post]({{ site.baseurl }}{% post_url /core-samples/2016-06-30-bayesian basics and naive bayes%})) and let $\pi_c$ be the class probability $P(y=c)$ (estimated as the proportions of instances in class $c$):
 
 $$ P(y=c \mid x,\theta) = \frac{\pi_c \mid 2 \pi \sigma_c \mid^{-\frac{1}{2}} exp\left( -\frac{1}{2}(x - \mu_c)^T \sigma_c^{-1} (x-\mu_c)\right)}{\sum_{c_k} \pi_{c_k} \mid 2 \pi \sigma_{c_k} \mid^{-\frac{1}{2}} exp\left( -\frac{1}{2}(x-\mu_{c_k})^T \sigma_{c_k}^{-1}(x-\mu_{c_k})\right)} $$
 
