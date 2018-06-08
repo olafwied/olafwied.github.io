@@ -98,7 +98,9 @@ $$= \mathbb{E}_q \log P(X,T \mid \theta) + const$$.
 
 Often times, e.g. for a Gaussian distribution or if otherwise properly chosen, this function is relatively easy to optimize (or even concave with a global optimum). 
 
-## The General Form of Expectation-Maximization (revisisted)
+## The General Form of EM (revisisted)
+
+In summary, the EM algorithm looks as follows:
 
 **While** $\mathcal{L}(\theta^j, q^j) > tol \cdot \mathcal{L}(\theta^{j-1}, q^{j-1})$:
 
@@ -114,7 +116,7 @@ $\theta^{j+1} = \underset{\theta}{argmax} \, \mathbb{E}_{q^{j+1}} \log P(X,T \mi
 
 ## Convergence Properties of the EM Algorithm
 
-We can easily prove that the EM Algorithm always converges to at least a local maximum because
+Lastly, we can easily prove that the EM Algorithm always converges to at least a local maximum because
 
 $$\log P(X \mid \theta^{j+1}) \geq \mathcal{L}(q^{j+1}, \theta^{j+1}) \geq \mathcal{L}(q^{j+1}, \theta^j) = \log P(X \mid \theta^j)$$
 
