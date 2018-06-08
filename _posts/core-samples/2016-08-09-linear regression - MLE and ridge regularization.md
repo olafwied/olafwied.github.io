@@ -54,6 +54,6 @@ If your data is not normalized and you need an offset parameter $w_0$, it will b
 
 #### Beyond Point Estimates
 
-In the [next post]({{ site.baseurl }}{% post_url /core-samples/2016-08-10-Bayesian Linear Regression%}) we will use Bayesian analysis to compute the full posterior over $w$ and $\sigma^2$.
+In the [next post]({{ site.baseurl }}{% post_url /core-samples/2016-08-10-bayesian linear regression%}) we will use Bayesian analysis to compute the full posterior over $w$ and $\sigma^2$.
 
 
