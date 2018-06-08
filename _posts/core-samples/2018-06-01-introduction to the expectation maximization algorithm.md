@@ -245,70 +245,9 @@ plt.show()
 
 #### Infer Assignments (Round 2)
 
-
-```python
-cluster1_c1 = norm_density(cluster_1, mu1_est, 0.5**2)
-cluster2_c1 = norm_density(cluster_2, mu1_est, 0.5**2)
-```
-
-
-```python
-cluster1_c2 = norm_density(cluster_1, mu2_est, 0.5**2)
-cluster2_c2 = norm_density(cluster_2, mu2_est, 0.5**2)
-```
-
-
-```python
-assignments_cluster1 = np.argmax(np.vstack([cluster1_c1,cluster1_c2]).T, axis=1)
-```
-
-
-```python
-assignments_cluster2 = np.argmax(np.vstack([cluster2_c1,cluster2_c2]).T, axis=1)
-```
-
-
-```python
-#plot densities
-plt.plot(x, norm_density(x,mu1_est,sigma1_est),'b-',label='C=1')
-plt.plot(x, norm_density(x,mu2_est,sigma2_est),'r-',label='C=2')
-#plot samples
-plt.scatter(cluster_1,jitter1,marker='*',c=['b' if x==0 else 'r' for x in assignments_cluster1])
-plt.scatter(cluster_2,jitter2,marker='*',c=['b' if x==0 else 'r' for x in assignments_cluster2])
-plt.legend()
-plt.title("Updated Assignments")
-plt.show()
-```
-
-
 ![Soft Assignments 2](https://github.com/olafwied/olafwied.github.io/blob/master/_posts/output_36_0[1].png?raw=true)
 
-
 #### Update Parameters (Round 2)
-
-
-```python
-mu1_est = np.sum(cluster_1[np.where(assignments_cluster1==0)])+np.sum(cluster_2[np.where(assignments_cluster2==0)])
-mu1_est /= np.sum(assignments_cluster1==0)+np.sum(assignments_cluster2==0)
-```
-
-
-```python
-mu2_est = np.sum(cluster_1[np.where(assignments_cluster1==1)])+np.sum(cluster_2[np.where(assignments_cluster2==1)])
-mu2_est /= np.sum(assignments_cluster1==1)+np.sum(assignments_cluster2==1)
-```
-
-
-```python
-sigma1_est = np.sum(np.square(cluster_1[np.where(assignments_cluster1==0)]-mu1_est))+np.sum(np.square(cluster_2[np.where(assignments_cluster2==0)]-mu1_est))
-sigma1_est /= np.sum(assignments_cluster1==0)+np.sum(assignments_cluster2==0)
-```
-
-
-```python
-mu1_est = np.sum(cluster_1[np.where(assignments_cluster1==0)])+np.sum(cluster_2[np.where(assignments_cluster2==0)])
-mu1_est /= np.sum(assignments_cluster1==0)+np.sum(assignments_cluster2==0)
-```
 
 **After the first step, the parameters change only very little. Given the overlap of the distributions, we came already close to the best we can do.**
 
@@ -321,20 +260,6 @@ mu1_est, sigma1_est, mu2_est, sigma2_est
      1.2493934722913047,
      1.3172709981738739,
      0.52251126923143254)
-
-
-```python
-#plot densities
-plt.plot(x, norm_density(x,mu1_est,sigma1_est),'b-',label='C=1')
-plt.plot(x, norm_density(x,mu2_est,sigma2_est),'r-',label='C=2')
-#plot samples
-plt.scatter(cluster_1,jitter1,marker='*',c=['b' if x==0 else 'r' for x in assignments_cluster1])
-plt.scatter(cluster_2,jitter2,marker='*',c=['b' if x==0 else 'r' for x in assignments_cluster2])
-plt.legend()
-plt.title("Updated Parameters")
-plt.show()
-```
-
 
 ![Updated Parameters 2](https://github.com/olafwied/olafwied.github.io/blob/master/_posts/output_43_0[1].png?raw=true)
 
