@@ -28,6 +28,7 @@ I'm planning to present the following topics over five parts (subject to change)
 - Example: Mixture Models
 - EM Algorithm, E-Step and M-Step
 - Large Scale EM
+- (Stochastic) Variational Inference
 
 ### Part III - Scalable Methods for Bayesian Learning
 - Probabilistic PCA
