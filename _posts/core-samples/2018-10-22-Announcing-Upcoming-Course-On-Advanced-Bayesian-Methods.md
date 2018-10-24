@@ -12,7 +12,7 @@ I started compiling material for my upcoming (free!) online course on "Scalable 
 
 You can find the course presentation at olafwied.github.io/AdvBayes-Course. The presentation uses reveal.js. To navigate through the presentation presse the `right` and `left` arrow buttons to jump from one section to the next. Use the `up` and `down` arrows to go through the material for each section. Hit `Esc` to see an overview of the slide layout.
 
-I'm planning to present the following topics over five parts:
+I'm planning to present the following topics over five parts (subject to change):
 
 ### Part I - Short Recap of Bayesian Basics
 - Bayes Theorem
