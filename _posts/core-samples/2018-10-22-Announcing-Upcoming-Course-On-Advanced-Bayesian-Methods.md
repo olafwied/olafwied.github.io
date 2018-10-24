@@ -23,6 +23,11 @@ I'm planning to present the following topics over five parts:
 - Frequentist Statistics
 
 ### Part II - Latent Variable Models and the EM Algorithm
+- Kullback-Leibler Divergence
+- Latent Variable Models
+- Example: Mixture Models
+- EM Algorithm, E-Step and M-Step
+- Large Scale EM
 
 ### Part III - Scalable Methods for Bayesian Learning
 - Probabilistic PCA
